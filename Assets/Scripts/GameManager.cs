@@ -1,18 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class GameManager : MonoBehaviour {
+    public static GameManager gameManager;
+
+    public bool isGameOver = false;
+    public Text textScore;
+    public GameObject uiGameOver;
+
+    public int score = 0;
+
+    private void Awake() {
+        if (gameManager == null) {
+            gameManager = this;
+        } else {
+            Debug.LogWarning("Multple GameMangers on Scene");
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Start() { }
+
+    void Update() { }
+
+    public void AddScore(int newScore) {
+        if (!isGameOver) {
+            score += newScore;
+            textScore.text = score.ToString();
+        }
+    }
+
+    public void OnPlayerDead() {
+        isGameOver = true;
+        uiGameOver.SetActive(true);
     }
 }
