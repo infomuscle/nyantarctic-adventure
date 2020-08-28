@@ -2,17 +2,17 @@
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-    public static GameManager gameManager;
+    public static GameManager instance;
 
     public bool isGameOver = false;
-    public Text textScore;
-    public GameObject uiGameOver;
+    public Text scoreText;
+    public GameObject GameOverUI;
 
     public int score = 0;
 
     private void Awake() {
-        if (gameManager == null) {
-            gameManager = this;
+        if (instance == null) {
+            instance = this;
         } else {
             Debug.LogWarning("Multple GameMangers on Scene");
             Destroy(gameObject);
@@ -26,12 +26,13 @@ public class GameManager : MonoBehaviour {
     public void AddScore(int newScore) {
         if (!isGameOver) {
             score += newScore;
-            textScore.text = score.ToString();
+            scoreText.text = score.ToString();
         }
     }
 
     public void OnPlayerDead() {
+        Debug.Log("OnPlayerDead!");
         isGameOver = true;
-        uiGameOver.SetActive(true);
+        GameOverUI.SetActive(true);
     }
 }
