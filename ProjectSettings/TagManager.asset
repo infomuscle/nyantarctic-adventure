@@ -8,6 +8,7 @@ TagManager:
   - StandPlatform
   - TargetPlatform
   - EndPoint
+  - HiddenPlatform
   layers:
   - Default
   - TransparentFX
