@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour {
 
     public GameObject standPlatform;
     public GameObject targetPlatform;
-    public GameObject hiddenPlatform;
-
     public PlatformMover[] platformMovers;
 
     public bool[] isMoving;
@@ -28,16 +26,14 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        platformMovers = new PlatformMover[3];
+        platformMovers = new PlatformMover[2];
         standPlatform = GameObject.FindWithTag("StandPlatform");
         targetPlatform = GameObject.FindWithTag("TargetPlatform");
-        hiddenPlatform = GameObject.FindWithTag("HiddenPlatform");
-
+        
         platformMovers[0] = standPlatform.GetComponent<PlatformMover>();
         platformMovers[1] = targetPlatform.GetComponent<PlatformMover>();
-        platformMovers[2] = hiddenPlatform.GetComponent<PlatformMover>();
-
-        isMoving = new bool[] {false, false, false};
+        
+        isMoving = new bool[] {false, false};
     }
 
     void Update() {
@@ -60,13 +56,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void MovePlatform() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             platformMovers[i].isMove = true;
         }
     }
 
     public bool CheckMovePossible() {
-        if (!isMoving[0] && !isMoving[1] && !isMoving[2]) {
+        if (!isMoving[0] && !isMoving[1]) {
             return true;
         }
 
