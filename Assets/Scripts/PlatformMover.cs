@@ -34,7 +34,7 @@ public class PlatformMover : MonoBehaviour {
                 break;
             case "TargetPlatform":
                 if (CheckEndOfScreen()) {
-                    float endPositionX = -180 + (width * transform.localScale.x / 2);
+                    float endPositionX = -108f - (width * transform.localScale.x / 2);
                     Stop(endPositionX);
                 }
 
@@ -53,6 +53,7 @@ public class PlatformMover : MonoBehaviour {
         float newPositionX = 180 + (width * transform.localScale.x / 2);
         transform.position = new Vector3(newPositionX, -224, 0);
 
+        ChangeWidth();
         ChangeMovingStatus(false);
     }
 
@@ -75,7 +76,8 @@ public class PlatformMover : MonoBehaviour {
     }
 
     private bool CheckEndOfScreen() {
-        float endPositionX = -180 + (width * transform.localScale.x / 2);
+        // float endPositionX = -180 + (width * transform.localScale.x / 2);
+        float endPositionX = -108f - (width * transform.localScale.x / 2);
         if (transform.position.x <= endPositionX) {
             return true;
         }
@@ -90,6 +92,11 @@ public class PlatformMover : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void ChangeWidth() {
+        float newWidth = Random.Range(0.02f, 0.2f);
+        transform.localScale = new Vector3(newWidth, 0.3f, 0.5f);
     }
 
     public void ChangeTag() {
