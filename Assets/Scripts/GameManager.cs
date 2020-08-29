@@ -36,6 +36,6 @@ public class GameManager : MonoBehaviour {
     public void OnPlayerDead() {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
-        GameOverUI.SetActive(true);
+        // GameOverUI.SetActive(true);
     }
 }
