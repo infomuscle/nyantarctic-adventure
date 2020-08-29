@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlatformMover : MonoBehaviour {
     public float speed = 1000f;
@@ -28,9 +29,7 @@ public class PlatformMover : MonoBehaviour {
         }
 
         if (this.tag == "TargetPlatform" && CheckEndOfScreen()) {
-            isMove = false;
-            float targetPositionX = -180 + (width * transform.localScale.x / 2);
-            transform.position = new Vector3(targetPositionX, -224, 0);
+            Stop();
         }
     }
 
@@ -38,9 +37,27 @@ public class PlatformMover : MonoBehaviour {
         transform.Translate(Vector3.left * (speed * Time.deltaTime));
     }
 
+    private void Repositon() {
+        isMove = false;
+
+        float random = Random.Range(0f, 50f);
+        float newPositionX = random;
+        transform.position = new Vector3(newPositionX, -224, 0);
+        ChangeTag();
+    }
+
+    private void Stop() {
+        isMove = false;
+        
+        float endPositionX = -180 + (width * transform.localScale.x / 2);
+        transform.position = new Vector3(endPositionX, -224, 0);
+
+        ChangeTag();
+    }
+
     private bool CheckOutOfScreen() {
-        float targetPositionX = -180 - (width * transform.localScale.x / 2);
-        if (transform.position.x <= targetPositionX) {
+        float outPositionX = -180 - (width * transform.localScale.x / 2);
+        if (transform.position.x <= outPositionX) {
             return true;
         }
 
@@ -48,23 +65,16 @@ public class PlatformMover : MonoBehaviour {
     }
 
     private bool CheckEndOfScreen() {
-        float targetPositionX = -180 + (width * transform.localScale.x / 2);
-        if (transform.position.x <= targetPositionX) {
+        float endPositionX = -180 + (width * transform.localScale.x / 2);
+        if (transform.position.x <= endPositionX) {
             return true;
         }
 
         return false;
     }
 
-    private void Repositon() {
-        isMove = false;
-        switch (this.tag) {
-            case "StandPlatform":
-                break;
-            case "TargetPlatform":
-                break;
-        }
-        transform.position = new Vector3(0, -224, 0);
+    private void ChangeWidth() {
+        
     }
 
     private void ChangeTag() {
