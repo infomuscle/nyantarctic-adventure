@@ -24,8 +24,9 @@ public class CatController : MonoBehaviour {
         }
 
         if (Input.GetMouseButton(0)) {
-            jumpForce += 100;
-            Debug.Log("Getting Force: " + jumpForce);
+            // jumpForce += 100;
+            jumpForce = 10000;
+            // Debug.Log("Getting Force: " + jumpForce);
         }
 
         if (Input.GetMouseButtonUp(0)) {

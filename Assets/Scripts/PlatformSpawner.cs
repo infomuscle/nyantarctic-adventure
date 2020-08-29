@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformSpawner : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class PlatformSpawner : MonoBehaviour {
+    public GameObject platformPrefab;
+    
+    
+    void Start() { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 }

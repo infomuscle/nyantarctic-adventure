@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
     public int score = 0;
 
+    public GameObject standPlatform;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -19,7 +21,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void Start() { }
+    void Start() {
+    }
 
     void Update() { }
 
