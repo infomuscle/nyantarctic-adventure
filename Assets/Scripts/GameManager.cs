@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour {
     public Text scoreText;
     public GameObject GameOverUI;
 
+    public GameObject cat;
+    
+
     public int score = 0;
 
-    public GameObject standPlatform;
-    public GameObject targetPlatform;
     public PlatformMover[] platformMovers;
-
     public bool[] isMoving;
 
     private void Awake() {
@@ -27,19 +27,26 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         platformMovers = new PlatformMover[2];
-        standPlatform = GameObject.FindWithTag("StandPlatform");
-        targetPlatform = GameObject.FindWithTag("TargetPlatform");
-        
-        platformMovers[0] = standPlatform.GetComponent<PlatformMover>();
-        platformMovers[1] = targetPlatform.GetComponent<PlatformMover>();
-        
+        platformMovers[0] = GameObject.FindWithTag("StandPlatform").GetComponent<PlatformMover>();
+        platformMovers[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<PlatformMover>();
         isMoving = new bool[] {false, false};
+        
+        cat = GameObject.Find("Cat");
+        
+        cat.transform.parent = GameObject.FindWithTag("TargetPlatform").transform;
     }
 
     void Update() {
         // if (Input.GetMouseButtonDown(0) && CheckMovePossible()) {
             // MovePlatform();
         // }
+    }
+
+    public void JumpSuccess() {
+        AddScore(1);
+        MovePlatform();
+        MoveCat();
+        cat.transform.parent = GameObject.FindWithTag("TargetPlatform").transform;
     }
 
     public void AddScore(int newScore) {
@@ -53,6 +60,10 @@ public class GameManager : MonoBehaviour {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
         // GameOverUI.SetActive(true);
+    }
+
+    public void MoveCat() {
+        
     }
 
     public void MovePlatform() {

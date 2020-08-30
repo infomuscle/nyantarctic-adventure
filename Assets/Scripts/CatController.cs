@@ -5,6 +5,8 @@ public class CatController : MonoBehaviour {
     public AudioClip deathClip;
     public float jumpForce = 0;
 
+    public float speed = 1000f;
+
     private bool isDead = false;
     private bool isJumping = false;
     private bool isLanding = true;
@@ -12,6 +14,7 @@ public class CatController : MonoBehaviour {
     private Rigidbody2D catRigidbody;
     private Animator animator;
     private AudioSource catAudio;
+    
 
     private void Start() {
         catRigidbody = GetComponent<Rigidbody2D>();
@@ -23,16 +26,15 @@ public class CatController : MonoBehaviour {
         if (isDead) {
             return;
         }
-
+        
         if (isJumping == false) {
             if (Input.GetMouseButton(0)) {
                 // jumpForce += 100;
-                jumpForce = 7000;
-                // Debug.Log("Getting Force: " + jumpForce);
+                jumpForce = 9000;
+                Debug.Log("Getting Force: " + jumpForce);
             }
 
             if (Input.GetMouseButtonUp(0)) {
-                // Debug.Log("Jump!");
                 isJumping = true;
                 catRigidbody.AddForce(new Vector2(7000, jumpForce));
             } 
@@ -68,7 +70,7 @@ public class CatController : MonoBehaviour {
     private void OnCollisionStay2D(Collision2D other) {
         if (other.collider.tag == "TargetPlatform" && catRigidbody.velocity == Vector2.zero) {
             if (isLanding) {
-                GameManager.instance.AddScore(1);
+                GameManager.instance.JumpSuccess();
                 isLanding = false;
             }
         }
