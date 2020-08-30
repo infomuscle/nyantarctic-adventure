@@ -5,13 +5,10 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public bool isGameOver = false;
-    public Text scoreText;
     public GameObject GameOverUI;
 
-    public GameObject cat;
-
-
     public int score = 0;
+    public Text scoreText;
 
     public PlatformMover[] platformMovers;
     public bool[] isMoving;
@@ -23,20 +20,16 @@ public class GameManager : MonoBehaviour {
             Debug.LogWarning("Multple GameMangers on Scene");
             Destroy(gameObject);
         }
-        
+    }
+
+    void Start() {
         platformMovers = new PlatformMover[2];
         platformMovers[0] = GameObject.FindWithTag("StandPlatform").GetComponent<PlatformMover>();
         platformMovers[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<PlatformMover>();
         isMoving = new bool[] {false, false};
     }
 
-    void Start() {
-
-    }
-
-    void Update() { }
-
-    public void JumpSuccess() {
+    public void NextStep() {
         AddScore(1);
         MovePlatform();
     }

@@ -1,11 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CatController : MonoBehaviour {
     public AudioClip deathClip;
     public float jumpForce = 0;
-
-    public float speed = 1000f;
 
     private bool isDead = false;
     private bool isJumping = false;
@@ -41,18 +38,28 @@ public class CatController : MonoBehaviour {
         }
 
         if (isRepositioning) {
-            Reposition();
+            Reposition("Right");
             if (CheckEndOnPlatform()) {
                 Stop();
-                GameManager.instance.JumpSuccess();
+                GameManager.instance.NextStep();
             }
         }
+
         // animator.SetBool("isJumping", isJumping);
     }
 
-    private void Reposition() {
-        transform.Translate(Vector3.right * (33f * Time.deltaTime));
-        // transform.localPosition = new Vector3(110,362,0);
+    private void Reposition(string forward) {
+        Vector3 vector3 = new Vector3();
+        switch (forward) {
+            case "Right":
+                vector3 = Vector3.right;
+                break;
+            case "Left":
+                vector3 = Vector3.left;
+                break;
+        }
+
+        transform.Translate(vector3 * (33f * Time.deltaTime));
     }
 
     private void Stop() {
@@ -83,12 +90,10 @@ public class CatController : MonoBehaviour {
     private void OnCollisionExit2D(Collision2D other) { }
 
     private void OnCollisionStay2D(Collision2D other) {
-        if (other.collider.tag == "TargetPlatform" && catRigidbody.velocity == Vector2.zero) {
-            if (isLanding) {
-                ChangeParent();
-                isRepositioning = true;
-                isLanding = false;
-            }
+        if (other.collider.tag == "TargetPlatform" && catRigidbody.velocity == Vector2.zero && isLanding) {
+            ChangeParent();
+            isRepositioning = true;
+            isLanding = false;
         }
     }
 

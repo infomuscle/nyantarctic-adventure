@@ -51,7 +51,7 @@ public class PlatformMover : MonoBehaviour {
         float newPositionX = 180 + (width * transform.localScale.x / 2);
         transform.position = new Vector3(newPositionX, -224, 0);
 
-        // ChangeWidth();
+        ChangeWidth();
         ChangeMovingStatus(false);
     }
 
@@ -87,7 +87,7 @@ public class PlatformMover : MonoBehaviour {
     }
 
     public void ChangeWidth() {
-        float newWidth = Random.Range(0.02f, 0.2f);
+        float newWidth = Random.Range(0.08f, 0.2f);
         transform.localScale = new Vector3(newWidth, 0.3f, 0.5f);
     }
 
