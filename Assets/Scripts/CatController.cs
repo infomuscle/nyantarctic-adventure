@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CatController : MonoBehaviour {
     public AudioClip deathClip;
     public float jumpForce = 0;
 
     private bool isDead = false;
-    private bool isGrounded = false;
+    private bool isJumping = false;
+    private bool isLanding = true;
 
     private Rigidbody2D catRigidbody;
     private Animator animator;
@@ -22,18 +24,21 @@ public class CatController : MonoBehaviour {
             return;
         }
 
-        if (Input.GetMouseButton(0)) {
-            // jumpForce += 100;
-            jumpForce = 10000;
-            // Debug.Log("Getting Force: " + jumpForce);
-        }
+        if (isJumping == false) {
+            if (Input.GetMouseButton(0)) {
+                // jumpForce += 100;
+                jumpForce = 7000;
+                // Debug.Log("Getting Force: " + jumpForce);
+            }
 
-        if (Input.GetMouseButtonUp(0)) {
-            // Debug.Log("Jump!");
-            catRigidbody.AddForce(new Vector2(7000, jumpForce));
+            if (Input.GetMouseButtonUp(0)) {
+                // Debug.Log("Jump!");
+                isJumping = true;
+                catRigidbody.AddForce(new Vector2(7000, jumpForce));
+            } 
         }
         
-        // animator.SetBool("isGroundes", isGrounded);
+        // animator.SetBool("isJumping", isJumping);
     }
 
     private void Die() {
@@ -51,13 +56,21 @@ public class CatController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        isGrounded = true;
         jumpForce = 0;
-        Debug.Log("isGrounded: " + isGrounded);
+        isJumping = false;
+        isLanding = true;
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        isGrounded = false;
-        Debug.Log("isGrounded: " + isGrounded);
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.collider.tag == "TargetPlatform" && catRigidbody.velocity == Vector2.zero) {
+            if (isLanding) {
+                GameManager.instance.AddScore(1);
+                isLanding = false;
+            }
+        }
     }
 }

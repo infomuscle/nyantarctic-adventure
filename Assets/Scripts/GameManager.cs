@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0) && CheckMovePossible()) {
-            MovePlatform();
-        }
+        // if (Input.GetMouseButtonDown(0) && CheckMovePossible()) {
+            // MovePlatform();
+        // }
     }
 
     public void AddScore(int newScore) {
