@@ -10,6 +10,7 @@ public class CatController : MonoBehaviour {
     private bool isDead = false;
     private bool isJumping = false;
     private bool isLanding = true;
+    private bool isRepositioning = false;
 
     private Rigidbody2D catRigidbody;
     private Animator animator;
@@ -27,11 +28,10 @@ public class CatController : MonoBehaviour {
             return;
         }
 
-        if (isJumping == false) {
+        if (!isJumping) {
             if (Input.GetMouseButton(0)) {
                 // jumpForce += 100;
-                jumpForce = 9000;
-                Debug.Log("Getting Force: " + jumpForce);
+                jumpForce = 7600;
             }
 
             if (Input.GetMouseButtonUp(0)) {
@@ -40,7 +40,24 @@ public class CatController : MonoBehaviour {
             }
         }
 
+        if (isRepositioning) {
+            Reposition();
+            if (CheckEndOnPlatform()) {
+                Stop();
+                GameManager.instance.JumpSuccess();
+            }
+        }
         // animator.SetBool("isJumping", isJumping);
+    }
+
+    private void Reposition() {
+        transform.Translate(Vector3.right * (33f * Time.deltaTime));
+        // transform.localPosition = new Vector3(110,362,0);
+    }
+
+    private void Stop() {
+        isRepositioning = false;
+        transform.localPosition = new Vector3(120, 364, 0);
     }
 
     private void Die() {
@@ -69,10 +86,19 @@ public class CatController : MonoBehaviour {
         if (other.collider.tag == "TargetPlatform" && catRigidbody.velocity == Vector2.zero) {
             if (isLanding) {
                 ChangeParent();
-                GameManager.instance.JumpSuccess();
+                isRepositioning = true;
                 isLanding = false;
             }
         }
+    }
+
+    private bool CheckEndOnPlatform() {
+        float positionX = 120f;
+        if (transform.localPosition.x >= positionX) {
+            return true;
+        }
+
+        return false;
     }
 
     private void ChangeParent() {

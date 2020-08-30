@@ -23,13 +23,15 @@ public class GameManager : MonoBehaviour {
             Debug.LogWarning("Multple GameMangers on Scene");
             Destroy(gameObject);
         }
-    }
-
-    void Start() {
+        
         platformMovers = new PlatformMover[2];
         platformMovers[0] = GameObject.FindWithTag("StandPlatform").GetComponent<PlatformMover>();
         platformMovers[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<PlatformMover>();
         isMoving = new bool[] {false, false};
+    }
+
+    void Start() {
+
     }
 
     void Update() { }
@@ -37,7 +39,6 @@ public class GameManager : MonoBehaviour {
     public void JumpSuccess() {
         AddScore(1);
         MovePlatform();
-        // cat.transform.parent = GameObject.FindWithTag("TargetPlatform").transform;
     }
 
     public void AddScore(int newScore) {
