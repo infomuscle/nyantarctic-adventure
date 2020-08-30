@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour {
     public Text scoreText;
 
     public PlatformMover[] platformMovers;
-    public bool[] isMoving;
 
     private void Awake() {
         if (instance == null) {
@@ -26,7 +25,6 @@ public class GameManager : MonoBehaviour {
         platformMovers = new PlatformMover[2];
         platformMovers[0] = GameObject.FindWithTag("StandPlatform").GetComponent<PlatformMover>();
         platformMovers[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<PlatformMover>();
-        isMoving = new bool[] {false, false};
     }
 
     public void NextStep() {
@@ -51,13 +49,5 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 2; i++) {
             platformMovers[i].isMove = true;
         }
-    }
-
-    public bool CheckMovePossible() {
-        if (!isMoving[0] && !isMoving[1]) {
-            return true;
-        }
-
-        return false;
     }
 }

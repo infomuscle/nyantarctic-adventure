@@ -41,7 +41,6 @@ public class PlatformMover : MonoBehaviour {
     }
 
     private void Move() {
-        ChangeMovingStatus(true);
         transform.Translate(Vector3.left * (speed * Time.deltaTime));
     }
 
@@ -52,7 +51,6 @@ public class PlatformMover : MonoBehaviour {
         transform.position = new Vector3(newPositionX, -224, 0);
 
         ChangeWidth();
-        ChangeMovingStatus(false);
     }
 
     private void Stop(float positionX) {
@@ -60,7 +58,6 @@ public class PlatformMover : MonoBehaviour {
 
         transform.position = new Vector3(positionX, -224, 0);
 
-        ChangeMovingStatus(false);
         ChangeTag();
     }
 
@@ -98,17 +95,6 @@ public class PlatformMover : MonoBehaviour {
                 break;
             case "TargetPlatform":
                 this.tag = "StandPlatform";
-                break;
-        }
-    }
-
-    public void ChangeMovingStatus(bool status) {
-        switch (this.tag) {
-            case "StandPlatform":
-                GameManager.instance.isMoving[0] = status;
-                break;
-            case "TargetPlatform":
-                GameManager.instance.isMoving[1] = status;
                 break;
         }
     }

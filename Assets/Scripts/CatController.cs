@@ -64,6 +64,7 @@ public class CatController : MonoBehaviour {
 
     private void Stop() {
         isRepositioning = false;
+        isJumping = false;
         transform.localPosition = new Vector3(120, 364, 0);
     }
 
@@ -83,7 +84,6 @@ public class CatController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other) {
         jumpForce = 0;
-        isJumping = false;
         isLanding = true;
     }
 
