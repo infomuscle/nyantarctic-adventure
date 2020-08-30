@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 
 public class PlatformMover : MonoBehaviour {
-    public float width;
-
     public bool isMove = false;
-    private bool isReposed = false;
+
+    private float width;
     private float speed = 1000f;
-    private GameObject hiddenPlatform;
-    private PlatformMover hiddenPlatformMover;
+    private bool isReposed = false;
 
     private void Awake() {
         BoxCollider2D platformCollider = GetComponent<BoxCollider2D>();
@@ -21,11 +19,11 @@ public class PlatformMover : MonoBehaviour {
 
         switch (this.tag) {
             case "StandPlatform":
-                if (!isReposed && CheckOutOfScreen()) {
+                if (!isReposed && CheckPositionOfScreen("Out")) {
                     Repositon();
                 }
 
-                if (isReposed && CheckTargetOfScreen()) {
+                if (isReposed && CheckPositionOfScreen("Target")) {
                     float targetPositionX = Mathf.Round(transform.position.x);
                     Stop(targetPositionX);
                     isReposed = false;
@@ -33,7 +31,7 @@ public class PlatformMover : MonoBehaviour {
 
                 break;
             case "TargetPlatform":
-                if (CheckEndOfScreen()) {
+                if (CheckPositionOfScreen("End")) {
                     float endPositionX = -108f - (width * transform.localScale.x / 2);
                     Stop(endPositionX);
                 }
@@ -53,7 +51,7 @@ public class PlatformMover : MonoBehaviour {
         float newPositionX = 180 + (width * transform.localScale.x / 2);
         transform.position = new Vector3(newPositionX, -224, 0);
 
-        ChangeWidth();
+        // ChangeWidth();
         ChangeMovingStatus(false);
     }
 
@@ -66,28 +64,21 @@ public class PlatformMover : MonoBehaviour {
         ChangeTag();
     }
 
-    private bool CheckOutOfScreen() {
-        float outPositionX = -180 - (width * transform.localScale.x / 2);
-        if (transform.position.x <= outPositionX) {
-            return true;
+    private bool CheckPositionOfScreen(string position) {
+        float positionX = 0f;
+        switch (position) {
+            case "Out":
+                positionX = -180 - (width * transform.localScale.x / 2);
+                break;
+            case "End":
+                positionX = -108f - (width * transform.localScale.x / 2);
+                break;
+            case "Target":
+                positionX = Random.Range(0f, 180 - (width * transform.localScale.x / 2));
+                break;
         }
 
-        return false;
-    }
-
-    private bool CheckEndOfScreen() {
-        // float endPositionX = -180 + (width * transform.localScale.x / 2);
-        float endPositionX = -108f - (width * transform.localScale.x / 2);
-        if (transform.position.x <= endPositionX) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool CheckTargetOfScreen() {
-        float targetPositonX = Random.Range(0f, 180 - (width * transform.localScale.x / 2));
-        if (transform.position.x <= targetPositonX) {
+        if (transform.position.x <= positionX) {
             return true;
         }
 
