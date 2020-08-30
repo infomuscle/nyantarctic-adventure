@@ -7,7 +7,7 @@ public class PlatformMover : MonoBehaviour {
     private float speed = 1000f;
     private bool isRepositioning = false;
 
-    private float newTargetPositionX;
+    private float targetPositionX;
 
     private float leftEndPositionX;
     private float leftOutPositionX;
@@ -36,7 +36,7 @@ public class PlatformMover : MonoBehaviour {
                 }
 
                 if (isRepositioning && CheckPositionOfScreen("Target")) {
-                    Stop(newTargetPositionX);
+                    Stop(targetPositionX);
                     isRepositioning = false;
                 }
 
@@ -57,7 +57,7 @@ public class PlatformMover : MonoBehaviour {
     private void Repositon() {
         isRepositioning = true;
         transform.position = new Vector3(rightOutPositionX, -224, 0);
-        newTargetPositionX = Random.Range(-36f, 180 - (width * transform.localScale.x / 2));
+        targetPositionX = Random.Range(-36f, 180 - (width * transform.localScale.x / 2));
 
         ChangeWidth();
     }
@@ -79,7 +79,7 @@ public class PlatformMover : MonoBehaviour {
                 positionX = leftEndPositionX;
                 break;
             case "Target":
-                positionX = newTargetPositionX;
+                positionX = targetPositionX;
                 break;
         }
 
