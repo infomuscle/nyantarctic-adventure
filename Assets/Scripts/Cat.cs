@@ -2,7 +2,8 @@
 
 public class Cat : MonoBehaviour {
     public AudioClip deathClip;
-    public float jumpForce = 0;
+
+    private float jumpForce = 0;
 
     private bool isDead = false;
     private bool isJumping = false;
@@ -12,7 +13,6 @@ public class Cat : MonoBehaviour {
     private Rigidbody2D catRigidbody;
     private Animator animator;
     private AudioSource catAudio;
-
 
     private void Start() {
         catRigidbody = GetComponent<Rigidbody2D>();

@@ -7,11 +7,14 @@ public class Platform : MonoBehaviour {
     private float speed = 1000f;
     private bool isRepositioning = false;
 
-    private float targetPositionX;
+    private float targetPosX;
+    private float leftEndPosX;
+    private float leftOutPosX;
+    private float rightEndPosX;
+    private float rightOutPosX;
 
-    private float leftEndPositionX;
-    private float leftOutPositionX;
-    private float rightOutPositionX;
+    private float defaultPosY;
+
 
     private void Awake() {
         BoxCollider2D platformCollider = GetComponent<BoxCollider2D>();
@@ -19,9 +22,12 @@ public class Platform : MonoBehaviour {
     }
 
     private void Start() {
-        leftEndPositionX = -108f - (width * transform.localScale.x / 2);
-        leftOutPositionX = -180 - (width * transform.localScale.x / 2);
-        rightOutPositionX = 180 + (width * transform.localScale.x / 2);
+        leftEndPosX = -180f + (width * transform.localScale.x / 2);
+        leftOutPosX = -180f - (width * transform.localScale.x / 2);
+        rightEndPosX = 180f - (width * transform.localScale.x / 2);
+        rightOutPosX = 180f + (width * transform.localScale.x / 2);
+
+        defaultPosY = -224;
     }
 
     private void Update() {
@@ -36,14 +42,14 @@ public class Platform : MonoBehaviour {
                 }
 
                 if (isRepositioning && CheckPositionOfScreen("Target")) {
-                    Stop(targetPositionX);
+                    Stop(targetPosX);
                     isRepositioning = false;
                 }
 
                 break;
             case "TargetPlatform":
                 if (CheckPositionOfScreen("LeftEnd")) {
-                    Stop(leftEndPositionX);
+                    Stop(leftEndPosX);
                 }
 
                 break;
@@ -56,34 +62,34 @@ public class Platform : MonoBehaviour {
 
     private void Repositon() {
         isRepositioning = true;
-        transform.position = new Vector3(rightOutPositionX, -224, 0);
-        targetPositionX = Random.Range(-36f, 180 - (width * transform.localScale.x / 2));
+        transform.position = new Vector3(rightOutPosX, defaultPosY, 0);
+        targetPosX = Random.Range(-36f, rightEndPosX);
 
         ChangeWidth();
     }
 
-    private void Stop(float positionX) {
+    private void Stop(float posX) {
         isMove = false;
-        transform.position = new Vector3(positionX, -224, 0);
+        transform.position = new Vector3(posX, defaultPosY, 0);
 
         ChangeTag();
     }
 
     private bool CheckPositionOfScreen(string position) {
-        float positionX = 0f;
+        float posX = 0f;
         switch (position) {
             case "LeftOut":
-                positionX = leftOutPositionX;
+                posX = leftOutPosX;
                 break;
             case "LeftEnd":
-                positionX = leftEndPositionX;
+                posX = leftEndPosX;
                 break;
             case "Target":
-                positionX = targetPositionX;
+                posX = targetPosX;
                 break;
         }
 
-        if (transform.position.x <= positionX) {
+        if (transform.position.x <= posX) {
             return true;
         }
 

@@ -3,14 +3,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
-
-    public bool isGameOver = false;
-    public GameObject GameOverUI;
-
-    public int score = 0;
     public Text scoreText;
+    public GameObject GameOverUI;
+    public bool isGameOver = false;
 
-    public Platform[] platforms;
+    private int score = 0;
+    private Platform[] platforms;
 
     private void Awake() {
         if (instance == null) {
