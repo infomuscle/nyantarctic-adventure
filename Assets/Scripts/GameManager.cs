@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public int score = 0;
     public Text scoreText;
 
-    public PlatformMover[] platformMovers;
+    public Platform[] platforms;
 
     private void Awake() {
         if (instance == null) {
@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        platformMovers = new PlatformMover[2];
-        platformMovers[0] = GameObject.FindWithTag("StandPlatform").GetComponent<PlatformMover>();
-        platformMovers[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<PlatformMover>();
+        platforms = new Platform[2];
+        platforms[0] = GameObject.FindWithTag("StandPlatform").GetComponent<Platform>();
+        platforms[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<Platform>();
     }
 
     public void NextStep() {
@@ -42,13 +42,13 @@ public class GameManager : MonoBehaviour {
     public void OnPlayerDead() {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
-        
+
         GameOverUI.SetActive(true);
     }
 
     public void MovePlatform() {
         for (int i = 0; i < 2; i++) {
-            platformMovers[i].isMove = true;
+            platforms[i].isMove = true;
         }
     }
 }

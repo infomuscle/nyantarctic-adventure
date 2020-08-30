@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CatController : MonoBehaviour {
+public class Cat : MonoBehaviour {
     public AudioClip deathClip;
     public float jumpForce = 0;
 

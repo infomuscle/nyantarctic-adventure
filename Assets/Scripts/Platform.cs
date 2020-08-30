@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlatformMover : MonoBehaviour {
+public class Platform : MonoBehaviour {
     public bool isMove = false;
 
     private float width;

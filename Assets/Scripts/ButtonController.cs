@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonManager : MonoBehaviour
-{
+public class ButtonController : MonoBehaviour {
     public void touchButtonPlay() {
         Debug.Log("touchButtonPlay!");
         SceneManager.LoadScene("Main");
