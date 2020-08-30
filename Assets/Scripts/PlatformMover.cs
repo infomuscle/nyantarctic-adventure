@@ -72,7 +72,7 @@ public class PlatformMover : MonoBehaviour {
                 break;
             case "Target":
                 positionX = Random.Range(0f, 180 - (width * transform.localScale.x / 2));
-                positionX = 40f;
+                // positionX = 40f;
                 break;
         }
 
