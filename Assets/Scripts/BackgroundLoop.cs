@@ -2,6 +2,7 @@
 
 public class BackgroundLoop : MonoBehaviour {
     private float width;
+    public float speed;
 
     private void Awake() {
         BoxCollider2D backgroundCollider = GetComponent<BoxCollider2D>();
@@ -9,6 +10,10 @@ public class BackgroundLoop : MonoBehaviour {
     }
 
     void Update() {
+        if (!GameManager.instance.isGameOver) {
+            transform.Translate(Vector3.left * (speed * Time.deltaTime));
+        }
+
         if (transform.position.x <= -width) {
             Reposition();
         }
