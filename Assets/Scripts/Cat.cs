@@ -32,8 +32,8 @@ public class Cat : MonoBehaviour {
                 } else {
                     jumpForce = MAX_JUMP_FORCE;
                 }
-
-                    Debug.Log(jumpForce);
+                // Debug.Log(jumpForce);
+                // Use Line Renderer
             }
 
             if (Input.GetMouseButtonUp(0)) {

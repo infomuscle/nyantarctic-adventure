@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public Text scoreText;
+    public Text gameScoreText;
+    public Text bestScoreText;
     public GameObject GameOverUI;
     public bool isGameOver = false;
 
@@ -40,7 +42,8 @@ public class GameManager : MonoBehaviour {
     public void OnPlayerDead() {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
-
+        saveBestScore();
+        setGameScoretext();
         GameOverUI.SetActive(true);
     }
 
@@ -48,5 +51,20 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 2; i++) {
             platforms[i].isMove = true;
         }
+    }
+
+    private void saveBestScore() {
+        if (!PlayerPrefs.HasKey("Best")) {
+            PlayerPrefs.SetInt("Best", 0);
+        }
+
+        if (score > PlayerPrefs.GetInt("Best")) {
+            PlayerPrefs.SetInt("Best", score);
+        }
+    }
+
+    private void setGameScoretext() {
+        gameScoreText.text = "Score: " + score;
+        bestScoreText.text = "Best: " + PlayerPrefs.GetInt("Best");
     }
 }
