@@ -2,7 +2,7 @@
 
 public class Cat : MonoBehaviour {
     public AudioClip deathClip;
-
+    private const float MAX_JUMP_FORCE = 10000;
     private float jumpForce = 0;
 
     private bool isDead = false;
@@ -27,13 +27,18 @@ public class Cat : MonoBehaviour {
 
         if (!isJumping) {
             if (Input.GetMouseButton(0)) {
-                // jumpForce += 100;
-                jumpForce = 7600;
+                if (jumpForce <= MAX_JUMP_FORCE) {
+                    jumpForce += 10000 * Time.deltaTime;
+                } else {
+                    jumpForce = MAX_JUMP_FORCE;
+                }
+
+                    Debug.Log(jumpForce);
             }
 
             if (Input.GetMouseButtonUp(0)) {
                 isJumping = true;
-                catRigidbody.AddForce(new Vector2(7000, jumpForce));
+                catRigidbody.AddForce(new Vector2(jumpForce, jumpForce));
             }
         }
 
