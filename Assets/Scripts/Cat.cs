@@ -14,10 +14,16 @@ public class Cat : MonoBehaviour {
     private Animator animator;
     private AudioSource catAudio;
 
+    public LineRenderer lineRenderer;
+    private LineRendererController lineRendererController;
+
+
     private void Start() {
         catRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
+
+        lineRendererController = lineRenderer.GetComponent<LineRendererController>();
     }
 
     private void Update() {
@@ -32,12 +38,14 @@ public class Cat : MonoBehaviour {
                 } else {
                     jumpForce = MAX_JUMP_FORCE;
                 }
-                // Debug.Log(jumpForce);
-                // Use Line Renderer
+
+                lineRenderer.enabled = true;
+                lineRendererController.DrawLine(transform.position, new Vector3(jumpForce / 100, 0, 0));
             }
 
             if (Input.GetMouseButtonUp(0)) {
                 isJumping = true;
+                lineRenderer.enabled = false;
                 catRigidbody.AddForce(new Vector2(jumpForce, jumpForce));
             }
         }
@@ -90,6 +98,7 @@ public class Cat : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         jumpForce = 0;
         isLanding = true;
+        Debug.Log("Position: " + transform.position);
     }
 
     private void OnCollisionExit2D(Collision2D other) { }
