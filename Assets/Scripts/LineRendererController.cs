@@ -14,9 +14,13 @@ public class LineRendererController : MonoBehaviour {
     }
 
     public void DrawLine(Vector3 catPos, Vector3 targetPos) {
-        lineRenderer.SetPosition(0, catPos);
-        lineRenderer.SetPosition(1, catPos + targetPos);
+        lineRenderer.SetVertexCount(3);
 
-        // lineRenderer.SetVertexCount((int) targetPos.x);
+        lineRenderer.SetPosition(0, catPos);
+        lineRenderer.SetPosition(1, catPos + new Vector3(targetPos.x, targetPos.y, 0));
+        lineRenderer.SetPosition(2, catPos + new Vector3(targetPos.x * 2, 0, 0));
+
+        // lineRenderer.SetPosition(1, catPos + new Vector3(100, 100, 0));
+        // lineRenderer.SetPosition(2, catPos + new Vector3(150, 0, 0));
     }
 }

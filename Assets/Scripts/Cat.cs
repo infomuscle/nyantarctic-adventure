@@ -40,7 +40,7 @@ public class Cat : MonoBehaviour {
                 }
 
                 lineRenderer.enabled = true;
-                lineRendererController.DrawLine(transform.position, new Vector3(jumpForce / 100, 0, 0));
+                lineRendererController.DrawLine(transform.position, new Vector3(jumpForce / 100, jumpForce / 100, 0));
             }
 
             if (Input.GetMouseButtonUp(0)) {
