@@ -20,20 +20,20 @@ public class Projector : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void Project(Vector3 velocity) {
+    public void Project(Vector2 velocity) {
         rigidbody.isKinematic = true;
 
-        Vector3 initVelocity = velocity / 50;
+        Vector2 initVelocity = velocity / 50;
         float p_flightTime = (initVelocity.y * 2.0f) / Mathf.Abs(Physics.gravity.y);
         float makeInterval = p_flightTime / childCount;
 
-        Vector3 ori_Pos = transform.position;
+        Vector2 ori_Pos = transform.position;
         float tmpFlightTime = makeInterval;
 
         for (int i = 0; i < childCount; i++) {
-            Vector3 projectionPos =
-                new Vector3(ori_Pos.x + makeInterval * initVelocity.x * (i + 1),
-                    ori_Pos.y + GetHeight(0, p_flightTime, tmpFlightTime, initVelocity.y), 0);
+            Vector2 projectionPos =
+                new Vector2(ori_Pos.x + makeInterval * initVelocity.x * (i + 1),
+                    ori_Pos.y + GetHeight(0, p_flightTime, tmpFlightTime, initVelocity.y));
             tmpFlightTime += makeInterval;
 
             projectiles[i].position = projectionPos;

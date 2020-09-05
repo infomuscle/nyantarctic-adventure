@@ -17,7 +17,7 @@ public class Cat : MonoBehaviour {
     private AudioSource catAudio;
 
     private Projector projector;
-    private Vector3 direction;
+    private Vector2 direction;
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -43,7 +43,7 @@ public class Cat : MonoBehaviour {
                     jumpForce = MAX_JUMP_FORCE;
                 }
 
-                direction = new Vector3(1, 1, 0) * jumpForce / 3000;
+                direction = new Vector2(1, 1) * jumpForce / 3000;
                 projector.Project(direction * FORCE_MAGNITUDE);
             }
 
@@ -67,23 +67,23 @@ public class Cat : MonoBehaviour {
     }
 
     private void Reposition(string forward) {
-        Vector3 vector3 = new Vector3();
+        Vector2 vector = new Vector2();
         switch (forward) {
             case "Right":
-                vector3 = Vector3.right;
+                vector = Vector2.right;
                 break;
             case "Left":
-                vector3 = Vector3.left;
+                vector = Vector2.left;
                 break;
         }
 
-        transform.Translate(vector3 * (33f * Time.deltaTime));
+        transform.Translate(vector * (33f * Time.deltaTime));
     }
 
     private void Stop() {
         isRepositioning = false;
         isJumping = false;
-        transform.localPosition = new Vector3(120, 364, 0);
+        transform.localPosition = new Vector2(120, 364);
     }
 
     private void Die() {

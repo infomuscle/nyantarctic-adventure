@@ -57,12 +57,12 @@ public class Platform : MonoBehaviour {
     }
 
     private void Move() {
-        transform.Translate(Vector3.left * (speed * Time.deltaTime));
+        transform.Translate(Vector2.left * (speed * Time.deltaTime));
     }
 
     private void Repositon() {
         isRepositioning = true;
-        transform.position = new Vector3(rightOutPosX, defaultPosY, 0);
+        transform.position = new Vector2(rightOutPosX, defaultPosY);
         targetPosX = Random.Range(-36f, rightEndPosX);
 
         ChangeWidth();
@@ -70,7 +70,7 @@ public class Platform : MonoBehaviour {
 
     private void Stop(float posX) {
         isMove = false;
-        transform.position = new Vector3(posX, defaultPosY, 0);
+        transform.position = new Vector2(posX, defaultPosY);
 
         ChangeTag();
     }
@@ -98,7 +98,7 @@ public class Platform : MonoBehaviour {
 
     public void ChangeWidth() {
         float newWidth = Random.Range(0.08f, 0.2f);
-        transform.localScale = new Vector3(newWidth, 0.3f, 0.5f);
+        transform.localScale = new Vector2(newWidth, 0.3f);
     }
 
     public void ChangeTag() {

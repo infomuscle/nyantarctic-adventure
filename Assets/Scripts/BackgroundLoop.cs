@@ -11,7 +11,7 @@ public class BackgroundLoop : MonoBehaviour {
 
     void Update() {
         if (!GameManager.instance.isGameOver) {
-            transform.Translate(Vector3.left * (speed * Time.deltaTime));
+            transform.Translate(Vector2.left * (speed * Time.deltaTime));
         }
 
         if (transform.position.x <= -width) {
