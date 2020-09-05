@@ -434,7 +434,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 1.618
   m_Text: 'NYANTARCTIC
 
     ADVENTURE'
@@ -718,7 +718,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1163699915}
-        m_MethodName: touchButtonOptions
+        m_MethodName: touchButtonRanking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1449,7 +1449,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1804863784}
-        m_MethodName: touchButtonOptions
+        m_MethodName: touchButtonStore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

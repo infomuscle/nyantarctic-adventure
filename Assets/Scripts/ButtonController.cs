@@ -19,6 +19,14 @@ public class ButtonController : MonoBehaviour {
     }
 
     public void touchButtonAds() {
-        Debug.Log("touchbuttonAds!");
+        Debug.Log("touchButtonAds!");
+    }
+
+    public void touchButtonStore() {
+        Debug.Log("touchButtonStore!");
+    }
+
+    public void touchButtonRanking() {
+        Debug.Log("touchButtonRanking!");
     }
 }
