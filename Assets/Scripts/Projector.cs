@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projector : MonoBehaviour {
     private Rigidbody2D rigidbody;
@@ -24,35 +22,34 @@ public class Projector : MonoBehaviour {
         rigidbody.isKinematic = true;
 
         Vector2 initVelocity = velocity / 50;
-        float p_flightTime = (initVelocity.y * 2.0f) / Mathf.Abs(Physics.gravity.y);
-        float makeInterval = p_flightTime / childCount;
+        float flightTime = (initVelocity.y * 2.0f) / Mathf.Abs(Physics.gravity.y);
+        float makeInterval = flightTime / childCount;
 
-        Vector2 ori_Pos = transform.position;
+        Vector2 originalPos = transform.position;
         float tmpFlightTime = makeInterval;
 
         for (int i = 0; i < childCount; i++) {
             Vector2 projectionPos =
-                new Vector2(ori_Pos.x + makeInterval * initVelocity.x * (i + 1),
-                    ori_Pos.y + GetHeight(0, p_flightTime, tmpFlightTime, initVelocity.y));
+                new Vector2(originalPos.x + makeInterval * initVelocity.x * (i + 1),
+                    originalPos.y + GetHeight(0, flightTime, tmpFlightTime, initVelocity.y));
             tmpFlightTime += makeInterval;
 
             projectiles[i].position = projectionPos;
         }
     }
 
-    private float GetHeight(float t_Start, float t_End, float t_Current, float vel_Init_y) {
-        float t_Center = (t_End - t_Start) / 2.0f;
-        if (t_Current == t_Center) {
-            return vel_Init_y * t_Center / 2.0f;
-        } else if (t_Current < t_Center) {
-            return (vel_Init_y + GetHeightGraph(t_Start, t_End, t_Current, vel_Init_y)) * t_Current / 2.0f;
+    private float GetHeight(float tStart, float tEnd, float tCurrent, float initVelocityY) {
+        float t_Center = (tEnd - tStart) / 2.0f;
+        if (tCurrent == t_Center) {
+            return initVelocityY * t_Center / 2.0f;
+        } else if (tCurrent < t_Center) {
+            return (initVelocityY + GetHeightGraph(tStart, tEnd, tCurrent, initVelocityY)) * tCurrent / 2.0f;
         } else {
-            return (vel_Init_y + GetHeightGraph(t_Start, t_End, (t_End - t_Current), vel_Init_y)) *
-                (t_End - t_Current) / 2.0f;
+            return (initVelocityY + GetHeightGraph(tStart, tEnd, (tEnd - tCurrent), initVelocityY)) * (tEnd - tCurrent) / 2.0f;
         }
     }
 
-    private float GetHeightGraph(float t_Start, float t_End, float t_Current, float vel_Init_y) {
-        return -((vel_Init_y * 2) / (t_End - t_Start)) * t_Current + vel_Init_y;
+    private float GetHeightGraph(float tStart, float tEnd, float tCurrent, float initVelocityY) {
+        return -((initVelocityY * 2) / (tEnd - tStart)) * tCurrent + initVelocityY;
     }
 }
