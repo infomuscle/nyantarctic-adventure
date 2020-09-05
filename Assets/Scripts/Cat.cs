@@ -1,16 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Cat : MonoBehaviour {
     public AudioClip deathClip;
-    private const float MAX_JUMP_FORCE = 10000;
-    private float jumpForce = 0;
     private const float FORCE_MAGNITUDE = 500;
+    private const float MAX_JUMP_FORCE = 12000;
+    private const float MIN_JUMP_FORCE = 3000;
+    private float jumpForce = 0;
 
     private bool isDead = false;
     private bool isJumping = false;
     private bool isLanding = true;
     private bool isRepositioning = false;
+
+    private Vector2 defaultPos;
 
     private Rigidbody2D rigidbody;
     private Animator animator;
@@ -24,6 +26,8 @@ public class Cat : MonoBehaviour {
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
+        
+        defaultPos = new Vector2(120, 364);
     }
 
     private void Update() {
@@ -34,6 +38,7 @@ public class Cat : MonoBehaviour {
         if (!isJumping) {
             if (Input.GetMouseButtonDown(0)) {
                 projector.projectile.SetActive(true);
+                jumpForce = MIN_JUMP_FORCE;
             }
 
             if (Input.GetMouseButton(0)) {
@@ -43,14 +48,14 @@ public class Cat : MonoBehaviour {
                     jumpForce = MAX_JUMP_FORCE;
                 }
 
-                direction = new Vector2(1, 1) * jumpForce / 3000;
+                // TODO - Why 2900?
+                direction = Vector2.one * jumpForce / 2900;
                 projector.Project(direction * FORCE_MAGNITUDE);
             }
 
             if (Input.GetMouseButtonUp(0)) {
                 isJumping = true;
                 rigidbody.isKinematic = false;
-
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
             }
         }
@@ -67,7 +72,7 @@ public class Cat : MonoBehaviour {
     }
 
     private void Reposition(string forward) {
-        Vector2 vector = new Vector2();
+        Vector2 vector = Vector2.zero;
         switch (forward) {
             case "Right":
                 vector = Vector2.right;
@@ -83,7 +88,7 @@ public class Cat : MonoBehaviour {
     private void Stop() {
         isRepositioning = false;
         isJumping = false;
-        transform.localPosition = new Vector2(120, 364);
+        transform.localPosition = defaultPos;
     }
 
     private void Die() {
@@ -103,11 +108,8 @@ public class Cat : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         jumpForce = 0;
         isLanding = true;
-        // projectile.SetActive(false);
-        Debug.Log("Position: " + transform.position);
+        projector.projectile.SetActive(false);
     }
-
-    private void OnCollisionExit2D(Collision2D other) { }
 
     private void OnCollisionStay2D(Collision2D other) {
         if (other.collider.tag == "TargetPlatform" && rigidbody.velocity == Vector2.zero && isLanding) {
