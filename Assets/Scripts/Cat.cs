@@ -14,28 +14,18 @@ public class Cat : MonoBehaviour {
     private Animator animator;
     private AudioSource catAudio;
 
-    // public LineRenderer lineRenderer;
-    // private LineRendererController lineRendererController;
-
-
     private Vector3 OriginalPos;
     private int childCount;
-    private Transform[] projectiles;
     private GameObject projectile;
+    private Transform[] projectiles;
 
     public float FixedForceMagnitude = 50000;
     private Vector3 direction;
-
-    // private Rigidbody2D rigidbody;
-
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
-
-        // lineRendererController = lineRenderer.GetComponent<LineRendererController>();
-
 
         OriginalPos = transform.position;
 
@@ -58,6 +48,7 @@ public class Cat : MonoBehaviour {
 
         if (!isJumping) {
             if (Input.GetMouseButtonDown(0)) {
+                projectile.SetActive(true);
                 rigidbody.isKinematic = true;
                 transform.position = OriginalPos;
                 rigidbody.velocity = Vector3.zero;
@@ -71,19 +62,12 @@ public class Cat : MonoBehaviour {
                     jumpForce = MAX_JUMP_FORCE;
                 }
 
-                // lineRenderer.enabled = true;
-                // lineRendererController.DrawLine(transform.position, new Vector3(jumpForce / 100, jumpForce / 100, 0));
-
-                // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                // RaycastHit hit;
-
                 direction = new Vector3(1, 1, 1) * jumpForce / 3000;
                 SetFlightPredict(direction * FixedForceMagnitude);
             }
 
             if (Input.GetMouseButtonUp(0)) {
                 isJumping = true;
-                // lineRenderer.enabled = false;
                 rigidbody.isKinematic = false;
 
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
@@ -138,6 +122,7 @@ public class Cat : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         jumpForce = 0;
         isLanding = true;
+        // projectile.SetActive(false);
         Debug.Log("Position: " + transform.position);
     }
 
