@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Cat : MonoBehaviour {
     public AudioClip deathClip;
     private const float MAX_JUMP_FORCE = 10000;
     private float jumpForce = 0;
+    private const float FORCE_MAGNITUDE = 500;
 
     private bool isDead = false;
     private bool isJumping = false;
@@ -15,7 +17,6 @@ public class Cat : MonoBehaviour {
     private AudioSource catAudio;
 
     private Projector projector;
-    public float FixedForceMagnitude;
     private Vector3 direction;
 
     private void Start() {
@@ -33,8 +34,6 @@ public class Cat : MonoBehaviour {
         if (!isJumping) {
             if (Input.GetMouseButtonDown(0)) {
                 projector.projectile.SetActive(true);
-                rigidbody.isKinematic = true;
-                rigidbody.velocity = Vector3.zero;
             }
 
             if (Input.GetMouseButton(0)) {
@@ -45,7 +44,7 @@ public class Cat : MonoBehaviour {
                 }
 
                 direction = new Vector3(1, 1, 0) * jumpForce / 3000;
-                projector.SetFlightPredict(direction * FixedForceMagnitude);
+                projector.Project(direction * FORCE_MAGNITUDE);
             }
 
             if (Input.GetMouseButtonUp(0)) {
