@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -12,9 +11,8 @@ public class GameManager : MonoBehaviour {
 
     private int score = 0;
     private Platform[] platforms;
+    private Background[] backgrounds;
 
-    BackgroundController[] backgrounds;
-    
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -28,21 +26,14 @@ public class GameManager : MonoBehaviour {
         platforms = new Platform[2];
         platforms[0] = GameObject.FindWithTag("StandPlatform").GetComponent<Platform>();
         platforms[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<Platform>();
-        
-        backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<BackgroundController>();
+
+        backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
     }
 
     public void NextStep() {
         AddScore(1);
-        MovePlatform();
         MoveBacgkrounds();
-    }
-
-    public void AddScore(int newScore) {
-        if (!isGameOver) {
-            score += newScore;
-            scoreText.text = score.ToString();
-        }
+        MovePlatform();
     }
 
     public void OnPlayerDead() {
@@ -53,13 +44,20 @@ public class GameManager : MonoBehaviour {
         GameOverUI.SetActive(true);
     }
 
-    public void MovePlatform() {
+    private void AddScore(int newScore) {
+        if (!isGameOver) {
+            score += newScore;
+            scoreText.text = score.ToString();
+        }
+    }
+
+    private void MovePlatform() {
         for (int i = 0; i < platforms.Length; i++) {
             platforms[i].isMove = true;
         }
     }
 
-    public void MoveBacgkrounds() {
+    private void MoveBacgkrounds() {
         for (int i = 0; i < backgrounds.Length; i++) {
             backgrounds[i].isMove = true;
         }

@@ -5,6 +5,7 @@ public class Platform : MonoBehaviour {
     private const float SPEED = 1000f;
     private const float MIN_WIDTH_SCALE = 0.08f;
     private const float MAX_WIDTH_SCALE = 0.2f;
+    
     public bool isMove = false;
 
     private float width;
@@ -94,12 +95,12 @@ public class Platform : MonoBehaviour {
         return false;
     }
 
-    public void ChangeWidth() {
+    private void ChangeWidth() {
         float newWidth = Random.Range(MIN_WIDTH_SCALE, MAX_WIDTH_SCALE);
         transform.localScale = new Vector2(newWidth, 0.3f);
     }
 
-    public void ChangeTag() {
+    private void ChangeTag() {
         switch (this.tag) {
             case "StandPlatform":
                 this.tag = "TargetPlatform";

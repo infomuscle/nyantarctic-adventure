@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BackgroundController : MonoBehaviour {
+public class Background : MonoBehaviour {
     private float SPEED = 90f;
     private float MOVE_DISTANCE = 30f;
 

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
 public class Projector : MonoBehaviour {
+    public GameObject projectile;
+
     private Rigidbody2D rigidbody;
     private int childCount;
-    public GameObject projectile;
     private Transform[] projectiles;
 
-    void Start() {
+    private void Start() {
         projectile = GameObject.Find("Projectile");
         Transform projectileSet = projectile.transform;
         childCount = projectileSet.childCount;

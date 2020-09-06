@@ -780,6 +780,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 615144187}
   GameOverUI: {fileID: 1587883850}
   isGameOver: 0
+  backgrounds: []
 --- !u!4 &408054708
 Transform:
   m_ObjectHideFlags: 0
@@ -1463,7 +1464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 260f26f38ab62452ea80ef2e65d952ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d234344fb3da4ac2871e0ad042ec086, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1815,7 +1816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 260f26f38ab62452ea80ef2e65d952ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d234344fb3da4ac2871e0ad042ec086, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2474,7 +2475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 260f26f38ab62452ea80ef2e65d952ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d234344fb3da4ac2871e0ad042ec086, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
