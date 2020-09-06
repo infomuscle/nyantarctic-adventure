@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
     private int score = 0;
     private Platform[] platforms;
-
+    
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public void NextStep() {
         AddScore(1);
         MovePlatform();
+        MoveBacgkrounds();
     }
 
     public void AddScore(int newScore) {
@@ -51,6 +53,14 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 2; i++) {
             platforms[i].isMove = true;
         }
+    }
+
+    public void MoveBacgkrounds() {
+        BackgroundLoop[] backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<BackgroundLoop>();
+        for (int i = 0; i < backgrounds.Length; i++) {
+            backgrounds[i].isMove = true;
+        }
+        
     }
 
     private void saveBestScore() {

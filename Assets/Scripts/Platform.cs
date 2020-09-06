@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
 public class Platform : MonoBehaviour {
+    private const float DEFAULT_POS_Y = -224f;
+    private const float SPEED = 1000f;
     public bool isMove = false;
 
     private float width;
-    private float speed = 1000f;
     private bool isRepositioning = false;
 
     private float targetPosX;
@@ -12,9 +13,6 @@ public class Platform : MonoBehaviour {
     private float leftOutPosX;
     private float rightEndPosX;
     private float rightOutPosX;
-
-    private float defaultPosY;
-
 
     private void Awake() {
         BoxCollider2D platformCollider = GetComponent<BoxCollider2D>();
@@ -26,8 +24,6 @@ public class Platform : MonoBehaviour {
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
         rightEndPosX = 180f - (width * transform.localScale.x / 2);
         rightOutPosX = 180f + (width * transform.localScale.x / 2);
-
-        defaultPosY = -224;
     }
 
     private void Update() {
@@ -57,12 +53,12 @@ public class Platform : MonoBehaviour {
     }
 
     private void Move() {
-        transform.Translate(Vector2.left * (speed * Time.deltaTime));
+        transform.Translate(Vector2.left * (SPEED * Time.deltaTime));
     }
 
     private void Repositon() {
         isRepositioning = true;
-        transform.position = new Vector2(rightOutPosX, defaultPosY);
+        transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
         targetPosX = Random.Range(-36f, rightEndPosX);
 
         ChangeWidth();
@@ -70,7 +66,7 @@ public class Platform : MonoBehaviour {
 
     private void Stop(float posX) {
         isMove = false;
-        transform.position = new Vector2(posX, defaultPosY);
+        transform.position = new Vector2(posX, DEFAULT_POS_Y);
 
         ChangeTag();
     }
