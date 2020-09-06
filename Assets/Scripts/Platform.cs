@@ -3,6 +3,8 @@
 public class Platform : MonoBehaviour {
     private const float DEFAULT_POS_Y = -224f;
     private const float SPEED = 1000f;
+    private const float MIN_WIDTH_SCALE = 0.08f;
+    private const float MAX_WIDTH_SCALE = 0.2f;
     public bool isMove = false;
 
     private float width;
@@ -93,7 +95,7 @@ public class Platform : MonoBehaviour {
     }
 
     public void ChangeWidth() {
-        float newWidth = Random.Range(0.08f, 0.2f);
+        float newWidth = Random.Range(MIN_WIDTH_SCALE, MAX_WIDTH_SCALE);
         transform.localScale = new Vector2(newWidth, 0.3f);
     }
 

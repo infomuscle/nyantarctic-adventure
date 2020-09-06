@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 
     private int score = 0;
     private Platform[] platforms;
+
+    BackgroundController[] backgrounds;
     
     private void Awake() {
         if (instance == null) {
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour {
         platforms = new Platform[2];
         platforms[0] = GameObject.FindWithTag("StandPlatform").GetComponent<Platform>();
         platforms[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<Platform>();
+        
+        backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<BackgroundController>();
     }
 
     public void NextStep() {
@@ -50,17 +54,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public void MovePlatform() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < platforms.Length; i++) {
             platforms[i].isMove = true;
         }
     }
 
     public void MoveBacgkrounds() {
-        BackgroundLoop[] backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<BackgroundLoop>();
         for (int i = 0; i < backgrounds.Length; i++) {
             backgrounds[i].isMove = true;
         }
-        
     }
 
     private void saveBestScore() {
