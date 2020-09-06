@@ -30,8 +30,15 @@ public class GameManager : MonoBehaviour {
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
     }
 
+    public void AddScore(int newScore) {
+        if (!isGameOver) {
+            score += newScore;
+            scoreText.text = score.ToString();
+        }
+    }
+    
     public void NextStep() {
-        AddScore(1);
+        // AddScore(1);
         MoveBacgkrounds();
         MovePlatform();
     }
@@ -42,13 +49,6 @@ public class GameManager : MonoBehaviour {
         saveBestScore();
         setGameScoretext();
         GameOverUI.SetActive(true);
-    }
-
-    private void AddScore(int newScore) {
-        if (!isGameOver) {
-            score += newScore;
-            scoreText.text = score.ToString();
-        }
     }
 
     private void MovePlatform() {

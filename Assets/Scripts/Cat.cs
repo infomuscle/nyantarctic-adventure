@@ -7,6 +7,8 @@ public class Cat : MonoBehaviour {
     private const float MIN_JUMP_FORCE = 3000;
     private float jumpForce = 0;
 
+    private bool isScoreAdded = false;
+
     private bool isDead = false;
     private bool isJumping = false;
     private bool isLanding = true;
@@ -26,7 +28,7 @@ public class Cat : MonoBehaviour {
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
-        
+
         defaultPos = new Vector2(120, 364);
     }
 
@@ -62,6 +64,12 @@ public class Cat : MonoBehaviour {
 
         if (isRepositioning) {
             Reposition("Right");
+
+            if (!isScoreAdded) {
+                GameManager.instance.AddScore(1);
+                isScoreAdded = true;
+            }
+
             if (CheckEndOnPlatform()) {
                 Stop();
                 GameManager.instance.NextStep();
@@ -88,6 +96,8 @@ public class Cat : MonoBehaviour {
     private void Stop() {
         isRepositioning = false;
         isJumping = false;
+        isScoreAdded = false;
+
         transform.localPosition = defaultPos;
     }
 
