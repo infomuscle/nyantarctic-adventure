@@ -55,3 +55,6 @@ TagManager:
   - name: Foreground
     uniqueID: 1581050497
     locked: 0
+  - name: Popup
+    uniqueID: 2892057991
+    locked: 0
