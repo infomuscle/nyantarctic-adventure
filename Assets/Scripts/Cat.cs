@@ -118,7 +118,7 @@ public class Cat : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         jumpForce = 0;
         isLanding = true;
-        projector.projectile.SetActive(false);
+        // projector.projectile.SetActive(false);
     }
 
     private void OnCollisionStay2D(Collision2D other) {
