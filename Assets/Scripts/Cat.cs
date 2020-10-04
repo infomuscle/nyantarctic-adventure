@@ -70,7 +70,7 @@ public class Cat : MonoBehaviour {
                 isScoreAdded = true;
             }
 
-            if (CheckEndOnPlatform()) {
+            if (CheckEndOnIceberg()) {
                 Stop();
                 GameManager.instance.NextStep();
             }
@@ -122,14 +122,14 @@ public class Cat : MonoBehaviour {
     }
 
     private void OnCollisionStay2D(Collision2D other) {
-        if (other.collider.tag == "TargetPlatform" && rigidbody.velocity == Vector2.zero && isLanding) {
+        if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
             isRepositioning = true;
             isLanding = false;
         }
     }
 
-    private bool CheckEndOnPlatform() {
+    private bool CheckEndOnIceberg() {
         float positionX = 120f;
         if (transform.localPosition.x >= positionX) {
             return true;
@@ -139,6 +139,6 @@ public class Cat : MonoBehaviour {
     }
 
     private void ChangeParent() {
-        gameObject.transform.parent = GameObject.FindWithTag("TargetPlatform").transform;
+        gameObject.transform.parent = GameObject.FindWithTag("TargetIceberg").transform;
     }
 }

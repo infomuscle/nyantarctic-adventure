@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Platform : MonoBehaviour {
+public class Iceberg : MonoBehaviour {
     private const float DEFAULT_POS_Y = -224f;
     private const float SPEED = 1000f;
     private const float MIN_WIDTH_SCALE = 0.08f;
@@ -18,8 +18,8 @@ public class Platform : MonoBehaviour {
     private float rightOutPosX;
 
     private void Awake() {
-        BoxCollider2D platformCollider = GetComponent<BoxCollider2D>();
-        width = platformCollider.size.x;
+        BoxCollider2D icebergCollider = GetComponent<BoxCollider2D>();
+        width = icebergCollider.size.x;
     }
 
     private void Start() {
@@ -35,7 +35,7 @@ public class Platform : MonoBehaviour {
         }
 
         switch (this.tag) {
-            case "StandPlatform":
+            case "StandIceberg":
                 if (!isRepositioning && CheckPositionOfScreen("LeftOut")) {
                     Repositon();
                 }
@@ -46,7 +46,7 @@ public class Platform : MonoBehaviour {
                 }
 
                 break;
-            case "TargetPlatform":
+            case "TargetIceberg":
                 if (CheckPositionOfScreen("LeftEnd")) {
                     Stop(leftEndPosX);
                 }
@@ -102,11 +102,11 @@ public class Platform : MonoBehaviour {
 
     private void ChangeTag() {
         switch (this.tag) {
-            case "StandPlatform":
-                this.tag = "TargetPlatform";
+            case "StandIceberg":
+                this.tag = "TargetIceberg";
                 break;
-            case "TargetPlatform":
-                this.tag = "StandPlatform";
+            case "TargetIceberg":
+                this.tag = "StandIceberg";
                 break;
         }
     }

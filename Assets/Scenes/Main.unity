@@ -1569,8 +1569,8 @@ GameObject:
   - component: {fileID: 905190204}
   - component: {fileID: 905190203}
   m_Layer: 0
-  m_Name: Platform2
-  m_TagString: TargetPlatform
+  m_Name: Iceberg2
+  m_TagString: TargetIceberg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2716,8 +2716,8 @@ GameObject:
   - component: {fileID: 1386480218}
   - component: {fileID: 1386480219}
   m_Layer: 0
-  m_Name: Platform1
-  m_TagString: StandPlatform
+  m_Name: Iceberg1
+  m_TagString: StandIceberg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

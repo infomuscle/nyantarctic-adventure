@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public bool isGameOver = false;
 
     private int score = 0;
-    private Platform[] platforms;
+    private Iceberg[] icebergs;
     private Background[] backgrounds;
 
     private void Awake() {
@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        platforms = new Platform[2];
-        platforms[0] = GameObject.FindWithTag("StandPlatform").GetComponent<Platform>();
-        platforms[1] = GameObject.FindWithTag("TargetPlatform").GetComponent<Platform>();
+        icebergs = new Iceberg[2];
+        icebergs[0] = GameObject.FindWithTag("StandIceberg").GetComponent<Iceberg>();
+        icebergs[1] = GameObject.FindWithTag("TargetIceberg").GetComponent<Iceberg>();
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
     }
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
     public void NextStep() {
         // AddScore(1);
         MoveBacgkrounds();
-        MovePlatform();
+        MoveIceberg();
     }
 
     public void OnPlayerDead() {
@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour {
         GameOverUI.SetActive(true);
     }
 
-    private void MovePlatform() {
-        for (int i = 0; i < platforms.Length; i++) {
-            platforms[i].isMove = true;
+    private void MoveIceberg() {
+        for (int i = 0; i < icebergs.Length; i++) {
+            icebergs[i].isMove = true;
         }
     }
 

@@ -5,10 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dead
-  - StandPlatform
-  - TargetPlatform
   - EndPoint
-  - HiddenPlatform
+  - StandIceberg
+  - TargetIceberg
   layers:
   - Default
   - TransparentFX
