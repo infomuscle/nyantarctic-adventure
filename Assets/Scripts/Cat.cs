@@ -11,7 +11,7 @@ public class Cat : MonoBehaviour {
 
     private bool isDead = false;
     private bool isJumping = false;
-    private bool isLanding = true;
+    private bool isLanding = false;
     private bool isRepositioning = false;
 
     private Vector2 defaultPos;
@@ -23,11 +23,19 @@ public class Cat : MonoBehaviour {
     private Projector projector;
     private Vector2 direction;
 
+    private SpriteRenderer spriteRenderer;
+    public Sprite readySprite;
+    public Sprite standSprite;
+    public Sprite jumpSprite;
+    public Sprite landingSprite;
+    public Sprite walkingSprite;
+
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         defaultPos = new Vector2(120, 364);
     }
@@ -41,6 +49,7 @@ public class Cat : MonoBehaviour {
             if (Input.GetMouseButtonDown(0)) {
                 projector.projectile.SetActive(true);
                 jumpForce = MIN_JUMP_FORCE;
+                spriteRenderer.sprite = readySprite;
             }
 
             if (Input.GetMouseButton(0)) {
@@ -59,10 +68,12 @@ public class Cat : MonoBehaviour {
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
+                spriteRenderer.sprite = jumpSprite;
             }
         }
 
         if (isRepositioning) {
+            spriteRenderer.sprite = walkingSprite;
             Reposition("Right");
 
             if (!isScoreAdded) {
@@ -75,8 +86,6 @@ public class Cat : MonoBehaviour {
                 GameManager.instance.NextStep();
             }
         }
-
-        // animator.SetBool("isJumping", isJumping);
     }
 
     private void Reposition(string forward) {
@@ -94,6 +103,7 @@ public class Cat : MonoBehaviour {
     }
 
     private void Stop() {
+        spriteRenderer.sprite = standSprite;
         isRepositioning = false;
         isJumping = false;
         isScoreAdded = false;
@@ -122,6 +132,9 @@ public class Cat : MonoBehaviour {
     }
 
     private void OnCollisionStay2D(Collision2D other) {
+        if (isJumping && isLanding) {
+            spriteRenderer.sprite = landingSprite;
+        }
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
             isRepositioning = true;

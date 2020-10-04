@@ -2030,6 +2030,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathClip: {fileID: 0}
+  readySprite: {fileID: 21300000, guid: 1a853b543180f4503b76826ef20f1ef4, type: 3}
+  standSprite: {fileID: 21300000, guid: 2ff661c5a7a394bd6943f90d4eb7a630, type: 3}
+  jumpSprite: {fileID: 21300000, guid: 91f09ecb81b524e90aef2d6b55d81cf6, type: 3}
+  landingSprite: {fileID: 0}
+  walkingSprite: {fileID: 21300000, guid: c925a3c72a9bf4689b49b59774e0ea60, type: 3}
 --- !u!114 &1101660006
 MonoBehaviour:
   m_ObjectHideFlags: 0
