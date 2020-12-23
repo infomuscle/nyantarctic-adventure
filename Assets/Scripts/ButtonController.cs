@@ -9,10 +9,18 @@ public class ButtonController : MonoBehaviour {
         SceneManager.LoadScene("Main");
     }
 
-    public void touchButtonOptions() {
-        Debug.Log("touchButtonOptions!");
+    public void touchButtonStore() {
+        Debug.Log("touchButtonStore!");
+    }
+    
+    public void touchButtonSettings() {
+        Debug.Log("touchButtonSettings!");
     }
 
+    public void touchButtonNoads() {
+        Debug.Log("touchButtonNoads!");
+    }
+    
     public void touchButtonHome() {
         Debug.Log("touchButtonHome!");
         SceneManager.LoadScene("Home");
@@ -22,9 +30,6 @@ public class ButtonController : MonoBehaviour {
         Debug.Log("touchButtonAds!");
     }
 
-    public void touchButtonStore() {
-        Debug.Log("touchButtonStore!");
-    }
 
     public void touchButtonRanking() {
         Debug.Log("touchButtonRanking!");
