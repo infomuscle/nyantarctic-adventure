@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
+    
+    // For Common
     public void touchButtonPlay() {
-        Debug.Log("touchButtonPlay!");
-        SceneManager.LoadScene("Main");
-    }
-
+            Debug.Log("touchButtonPlay!");
+            SceneManager.LoadScene("Main");
+        }
+    
+    
+    // For Main
     public void touchButtonStore() {
         Debug.Log("touchButtonStore!");
     }
@@ -21,6 +25,8 @@ public class ButtonController : MonoBehaviour {
         Debug.Log("touchButtonNoads!");
     }
     
+    
+    // For Gameover
     public void touchButtonHome() {
         Debug.Log("touchButtonHome!");
         SceneManager.LoadScene("Home");
@@ -30,8 +36,7 @@ public class ButtonController : MonoBehaviour {
         Debug.Log("touchButtonAds!");
     }
 
-
-    public void touchButtonRanking() {
-        Debug.Log("touchButtonRanking!");
+    public void touchButtonRank() {
+        Debug.Log("touchButtonRank!");
     }
 }
