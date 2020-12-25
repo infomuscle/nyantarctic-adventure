@@ -1,34 +1,75 @@
-﻿using GoogleMobileAds.Api;
+﻿using System;
+using GoogleMobileAds.Api;
 using UnityEngine;
 
-public class AdmobManager : MonoBehaviour
-{
+public class AdmobManager : MonoBehaviour {
+    public static AdmobManager instance;
+
     private BannerView bannerView;
 
-    void Start()
-    {
+    private RewardedAd rewardedAd;
+
+    private string adUnitId;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+        else {
+            Debug.LogWarning("Multiple AdmobManagers on Scene");
+            Destroy(gameObject);
+        }
+    }
+
+    void Start() {
         MobileAds.Initialize(initStatus => { });
 
         this.RequestBanner();
     }
 
 
-    private void RequestBanner()
-    {
-#if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/6300978111";
-#elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/2934735716";
-#else
-            string adUnitId = "unexpected_platform";
-#endif
+    private void RequestBanner() {
+        #if UNITY_ANDROID
+        adUnitId = "ca-app-pub-3940256099942544/6300978111";
+        #elif UNITY_IPHONE
+        adUnitId = "ca-app-pub-3940256099942544/2934735716";
+        #else
+        adUnitId = "unexpected_platform";
+        #endif
 
-        this.bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
+        bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
 
         // Load the banner with the request.
-        this.bannerView.LoadAd(request);
+        bannerView.LoadAd(request);
+    }
+
+    public void RequestReward() {
+        #if UNITY_ANDROID
+            adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        #elif UNITY_IPHONE
+        adUnitId = "ca-app-pub-3940256099942544/1712485313";
+        #else
+            adUnitId = "unexpected_platform";
+        #endif
+
+        Debug.Log("RequestReward!");
+
+        rewardedAd = new RewardedAd(adUnitId);
+        // Called when an ad request has successfully loaded.
+        this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded ad with the request.
+        rewardedAd.LoadAd(request);
+        rewardedAd.Show();
+    }
+    
+    public void HandleRewardedAdLoaded(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardedAdLoaded event received");
     }
 }

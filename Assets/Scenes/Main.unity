@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 350784158}
   - component: {fileID: 350784159}
   m_Layer: 0
-  m_Name: AdmobTest
+  m_Name: AdmobManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

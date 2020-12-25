@@ -34,6 +34,7 @@ public class ButtonController : MonoBehaviour {
 
     public void touchButtonAds() {
         Debug.Log("touchButtonAds!");
+        AdmobManager.instance.RequestReward();
     }
 
     public void touchButtonRank() {
