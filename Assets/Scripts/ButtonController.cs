@@ -1,43 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
-    
     // For Common
-    public void touchButtonPlay() {
-            Debug.Log("touchButtonPlay!");
-            SceneManager.LoadScene("Main");
-        }
-    
-    
-    // For Main
-    public void touchButtonStore() {
-        Debug.Log("touchButtonStore!");
-    }
-    
-    public void touchButtonSettings() {
-        Debug.Log("touchButtonSettings!");
+    public void TouchButtonPlay() {
+        Debug.Log("TouchButtonPlay!");
+        SceneManager.LoadScene("Main");
     }
 
-    public void touchButtonNoads() {
-        Debug.Log("touchButtonNoads!");
+
+    // For Main
+    public void TouchButtonStore() {
+        Debug.Log("TouchButtonStore!");
     }
-    
-    
+
+    public void TouchButtonSettings() {
+        Debug.Log("TouchButtonSettings!");
+    }
+
+    public void TouchButtonNoads() {
+        Debug.Log("TouchButtonNoads!");
+    }
+
+
     // For Gameover
-    public void touchButtonHome() {
-        Debug.Log("touchButtonHome!");
+    public void TouchButtonHome() {
+        Debug.Log("TouchButtonHome!");
         SceneManager.LoadScene("Home");
     }
 
-    public void touchButtonAds() {
-        Debug.Log("touchButtonAds!");
+    public void TouchButtonAds() {
+        Debug.Log("TouchButtonAds!");
         AdmobManager.instance.RequestReward();
     }
 
-    public void touchButtonRank() {
-        Debug.Log("touchButtonRank!");
+    public void TouchButtonRank() {
+        Debug.Log("TouchButtonRank!");
     }
 }

@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour {
     public void OnPlayerDead() {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
-        saveBestScore();
-        setGameScoretext();
+        SaveBestScore();
+        SetGameScoretext();
         GameOverUI.SetActive(true);
     }
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void saveBestScore() {
+    private void SaveBestScore() {
         if (!PlayerPrefs.HasKey("Best")) {
             PlayerPrefs.SetInt("Best", 0);
         }
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void setGameScoretext() {
+    private void SetGameScoretext() {
         gameScoreText.text = "Score: " + score;
         bestScoreText.text = "Best: " + PlayerPrefs.GetInt("Best");
     }

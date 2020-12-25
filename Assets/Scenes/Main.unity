@@ -216,7 +216,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96152982}
-        m_MethodName: touchButtonRank
+        m_MethodName: TouchButtonRank
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1618,7 +1618,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 803577308}
-        m_MethodName: touchButtonPlay
+        m_MethodName: TouchButtonPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2060,7 +2060,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 957820529}
-        m_MethodName: touchButtonHome
+        m_MethodName: TouchButtonHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2214,7 +2214,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 969724169}
-        m_MethodName: touchButtonAds
+        m_MethodName: TouchButtonAds
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

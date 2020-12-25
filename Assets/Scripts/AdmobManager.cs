@@ -24,9 +24,8 @@ public class AdmobManager : MonoBehaviour {
     void Start() {
         MobileAds.Initialize(initStatus => { });
 
-        this.RequestBanner();
+        RequestBanner();
     }
-
 
     private void RequestBanner() {
         #if UNITY_ANDROID
@@ -67,9 +66,8 @@ public class AdmobManager : MonoBehaviour {
         rewardedAd.LoadAd(request);
         rewardedAd.Show();
     }
-    
-    public void HandleRewardedAdLoaded(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleRewardedAdLoaded event received");
+
+    public void HandleRewardedAdLoaded(object sender, EventArgs args) {
+        print("HandleRewardedAdLoaded event received");
     }
 }
