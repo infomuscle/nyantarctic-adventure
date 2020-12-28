@@ -6,6 +6,8 @@ public class Cat : MonoBehaviour {
     private const float MAX_JUMP_FORCE = 12000;
     private const float MIN_JUMP_FORCE = 3000;
     private float jumpForce = 0;
+    private bool forceUp = true;
+
 
     private bool isScoreAdded = false;
 
@@ -53,10 +55,18 @@ public class Cat : MonoBehaviour {
             }
 
             if (Input.GetMouseButton(0)) {
-                if (jumpForce <= MAX_JUMP_FORCE) {
+                if (forceUp && jumpForce > MAX_JUMP_FORCE) {
+                    forceUp = false;
+                }
+                else if (!forceUp && jumpForce < 0) {
+                    forceUp = true;
+                }
+
+                if (forceUp) {
                     jumpForce += 10000 * Time.deltaTime;
-                } else {
-                    jumpForce = MAX_JUMP_FORCE;
+                }
+                else {
+                    jumpForce -= 10000 * Time.deltaTime;
                 }
 
                 // TODO - Why 2900?
@@ -135,6 +145,7 @@ public class Cat : MonoBehaviour {
         if (isJumping && isLanding) {
             spriteRenderer.sprite = landingSprite;
         }
+
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
             isRepositioning = true;
