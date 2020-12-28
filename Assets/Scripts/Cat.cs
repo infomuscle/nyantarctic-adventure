@@ -5,11 +5,8 @@ public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
     private const float MIN_JUMP_FORCE = 3000;
-
     private float jumpForce = 0;
-
-    // private float addForce = 10000 * Time.deltaTime;
-    private float addForce;
+    private float addForce = 0;
     private bool forceUp = true;
 
 
@@ -62,7 +59,7 @@ public class Cat : MonoBehaviour {
                 if (forceUp && jumpForce > MAX_JUMP_FORCE) {
                     forceUp = false;
                 }
-                else if (!forceUp && jumpForce < 0) {
+                else if (!forceUp && jumpForce < MIN_JUMP_FORCE) {
                     forceUp = true;
                 }
 
