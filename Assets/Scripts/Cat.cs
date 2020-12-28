@@ -5,7 +5,11 @@ public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
     private const float MIN_JUMP_FORCE = 3000;
+
     private float jumpForce = 0;
+
+    // private float addForce = 10000 * Time.deltaTime;
+    private float addForce;
     private bool forceUp = true;
 
 
@@ -62,12 +66,8 @@ public class Cat : MonoBehaviour {
                     forceUp = true;
                 }
 
-                if (forceUp) {
-                    jumpForce += 10000 * Time.deltaTime;
-                }
-                else {
-                    jumpForce -= 10000 * Time.deltaTime;
-                }
+                addForce = 10000 * Time.deltaTime;
+                jumpForce += (forceUp) ? addForce : -1 * addForce;
 
                 // TODO - Why 2900?
                 direction = Vector2.one * jumpForce / 2900;
