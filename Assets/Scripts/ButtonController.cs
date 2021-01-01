@@ -2,6 +2,9 @@
 using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
+    public GameObject settingsUI;
+
+
     // For Common
     public void TouchButtonPlay() {
         Debug.Log("TouchButtonPlay!");
@@ -16,6 +19,7 @@ public class ButtonController : MonoBehaviour {
 
     public void TouchButtonSettings() {
         Debug.Log("TouchButtonSettings!");
+        settingsUI.SetActive(true);
     }
 
     public void TouchButtonNoads() {

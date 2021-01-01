@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
     public Text scoreText;
     public Text gameScoreText;
     public Text bestScoreText;
-    public GameObject GameOverUI;
+    public GameObject gameOverUI;
     public bool isGameOver = false;
 
     private int score = 0;
@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         if (instance == null) {
             instance = this;
-        } else {
+        }
+        else {
             Debug.LogWarning("Multple GameMangers on Scene");
             Destroy(gameObject);
         }
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour {
             scoreText.text = score.ToString();
         }
     }
-    
+
     public void NextStep() {
         // AddScore(1);
         MoveBacgkrounds();
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
         isGameOver = true;
         SaveBestScore();
         SetGameScoretext();
-        GameOverUI.SetActive(true);
+        gameOverUI.SetActive(true);
     }
 
     private void MoveIceberg() {

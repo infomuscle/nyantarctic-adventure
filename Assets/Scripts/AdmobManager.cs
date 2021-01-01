@@ -58,7 +58,10 @@ public class AdmobManager : MonoBehaviour {
 
         rewardedAd = new RewardedAd(adUnitId);
         // Called when an ad request has successfully loaded.
-        this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+        rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+        rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;
+        rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+        rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -69,5 +72,23 @@ public class AdmobManager : MonoBehaviour {
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args) {
         print("HandleRewardedAdLoaded event received");
+    }
+
+    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args) {
+        print(
+            "HandleRewardedAdFailedToLoad event received with message: "
+            + args.Message);
+    }
+
+    public void HandleRewardedAdClosed(object sender, EventArgs args) {
+        print("HandleRewardedAdClosed event received");
+    }
+
+    public void HandleUserEarnedReward(object sender, Reward args) {
+        string type = args.Type;
+        double amount = args.Amount;
+        print(
+            "HandleRewardedAdRewarded event received for "
+            + amount.ToString() + " " + type);
     }
 }
