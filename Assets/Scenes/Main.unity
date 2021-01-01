@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 0}
+  storeUI: {fileID: 0}
 --- !u!114 &96152983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,8 +1396,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: aa6621d6887214e2a833e3cbf1406c85, type: 3}
-    m_FontSize: 36
+    m_Font: {fileID: 12800000, guid: 3b728a9394a50484e90770a3b2a5a4cd, type: 3}
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1806,6 +1807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 0}
+  storeUI: {fileID: 0}
 --- !u!1 &900784266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1835,7 @@ RectTransform:
   m_GameObject: {fileID: 900784266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 615144186}
   - {fileID: 1258497268}
@@ -1909,12 +1911,12 @@ SpriteRenderer:
   m_SortingLayerID: -1402909305
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 58004606aa15844b4a24ad1bbb2a18dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26a38db99f6e147d79b42443fb6be236, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 183, y: 90}
+  m_Size: {x: 550, y: 276}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2249,6 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 0}
+  storeUI: {fileID: 0}
 --- !u!1 &969724167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,6 +2304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 0}
+  storeUI: {fileID: 0}
 --- !u!114 &969724170
 MonoBehaviour:
   m_ObjectHideFlags: 0

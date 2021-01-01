@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
     public GameObject settingsUI;
+    public GameObject storeUI;
 
 
     // For Common
@@ -15,6 +16,7 @@ public class ButtonController : MonoBehaviour {
     // For Main
     public void TouchButtonStore() {
         Debug.Log("TouchButtonStore!");
+        storeUI.SetActive(true);
     }
 
     public void TouchButtonSettings() {
