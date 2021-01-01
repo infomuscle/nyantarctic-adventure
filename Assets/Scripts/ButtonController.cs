@@ -20,6 +20,8 @@ public class ButtonController : MonoBehaviour {
     public void TouchButtonSettings() {
         Debug.Log("TouchButtonSettings!");
         settingsUI.SetActive(true);
+        // SceneManager.LoadScene("Settings");
+
     }
 
     public void TouchButtonNoads() {

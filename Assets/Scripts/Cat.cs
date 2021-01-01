@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 public class Cat : MonoBehaviour {
-    public AudioClip deathClip;
+    public AudioSource audioDeath;
+    public AudioSource audioJump;
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
     private const float MIN_JUMP_FORCE = 3000;
@@ -72,6 +73,7 @@ public class Cat : MonoBehaviour {
             }
 
             if (Input.GetMouseButtonUp(0)) {
+                audioJump.Play();
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
@@ -122,7 +124,7 @@ public class Cat : MonoBehaviour {
         Debug.Log("Die!");
         // catAudio.clip = deathClip;
         // catAudio.Play();
-
+        audioDeath.Play();
         GameManager.instance.OnPlayerDead();
     }
 
