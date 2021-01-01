@@ -21,7 +21,7 @@ public class Cat : MonoBehaviour {
     private Vector2 defaultPos;
 
     private Rigidbody2D rigidbody;
-    // private Animator animator;
+    private Animator animator;
     // private AudioSource catAudio;
 
     private Projector projector;
@@ -36,10 +36,12 @@ public class Cat : MonoBehaviour {
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
-        // animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         // catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        animator.enabled = false;
 
         defaultPos = new Vector2(120, 364);
     }
@@ -84,7 +86,9 @@ public class Cat : MonoBehaviour {
 
         if (isRepositioning) {
             spriteRenderer.sprite = walkingSprite;
+            animator.enabled = true;
             // animator.SetTrigger("Walk");
+            // animator.SetBool("Walking", true);
             Reposition("Right");
 
             if (!isScoreAdded) {
@@ -115,6 +119,7 @@ public class Cat : MonoBehaviour {
 
     private void Stop() {
         spriteRenderer.sprite = standSprite;
+        animator.enabled = false;
         // animator.SetTrigger("Stand");
         isRepositioning = false;
         isJumping = false;
