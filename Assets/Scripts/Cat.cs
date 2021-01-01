@@ -21,8 +21,8 @@ public class Cat : MonoBehaviour {
     private Vector2 defaultPos;
 
     private Rigidbody2D rigidbody;
-    private Animator animator;
-    private AudioSource catAudio;
+    // private Animator animator;
+    // private AudioSource catAudio;
 
     private Projector projector;
     private Vector2 direction;
@@ -36,8 +36,8 @@ public class Cat : MonoBehaviour {
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        catAudio = GetComponent<AudioSource>();
+        // animator = GetComponent<Animator>();
+        // catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -74,6 +74,7 @@ public class Cat : MonoBehaviour {
 
             if (Input.GetMouseButtonUp(0)) {
                 audioJump.Play();
+                // animator.SetTrigger("Jump");
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
@@ -83,6 +84,7 @@ public class Cat : MonoBehaviour {
 
         if (isRepositioning) {
             spriteRenderer.sprite = walkingSprite;
+            // animator.SetTrigger("Walk");
             Reposition("Right");
 
             if (!isScoreAdded) {
@@ -113,6 +115,7 @@ public class Cat : MonoBehaviour {
 
     private void Stop() {
         spriteRenderer.sprite = standSprite;
+        // animator.SetTrigger("Stand");
         isRepositioning = false;
         isJumping = false;
         isScoreAdded = false;
@@ -143,6 +146,7 @@ public class Cat : MonoBehaviour {
     private void OnCollisionStay2D(Collision2D other) {
         if (isJumping && isLanding) {
             spriteRenderer.sprite = landingSprite;
+            // animator.SetTrigger("Slide");
         }
 
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
