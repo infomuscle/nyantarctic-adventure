@@ -18,7 +18,7 @@ public class Cat : MonoBehaviour {
     private bool isLanding = false;
     private bool isRepositioning = false;
 
-    private Vector2 defaultPos;
+    private Vector2 localStandPos;
 
     private Rigidbody2D rigidbody;
     private BoxCollider2D boxCollider;
@@ -33,8 +33,26 @@ public class Cat : MonoBehaviour {
     public Sprite readySprite;
     public Sprite standSprite;
     public Sprite jumpSprite;
-    public Sprite landingSprite;
-    public Sprite walkingSprite;
+    public Sprite slideSprite;
+    public Sprite walkSprite;
+
+    private Vector3 standPos = new Vector3(-125.5f, -119.5f, 0);
+    private Vector2 standOffset = new Vector2(-1.5f, 17f);
+    private Vector2 standSize = new Vector2(177f, 118f);
+
+    private Vector3 readyPos = new Vector3(-127.5f, -114.5f, 0);
+    private Vector2 readyOffset = new Vector2(0.1f, 0.5f);
+    private Vector2 readySize = new Vector2(194f, 135f);
+
+    private Vector2 jumpOffset = new Vector2(-0.4f, 4f);
+    private Vector2 jumpSize = new Vector2(252f, 161f);
+    private Vector2 slideOffset = new Vector2(-0.2f, -0.4f);
+    private Vector2 slideSize = new Vector2(284f, 117f);
+
+    private float walkPosY = -112f;
+    private Vector2 walkOffset = new Vector2(-1.3f, -0.4f);
+    private Vector2 walkSize = new Vector2(202f, 157f);
+
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -44,15 +62,27 @@ public class Cat : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         boxCollider = GetComponent<BoxCollider2D>();
-        // Stand - -2 / 17 / 176 / 118
-        // Ready - 0.1 / 0.5 / 194 / 135
-        // Jump - -0.4 / 4 / 252 / 161 
-        // Slide - 0.2 / -0.4 / 284 / 117
-        // Walk - -1.3 / -0.4 / 202 / 157
 
         animator.enabled = false;
 
-        defaultPos = new Vector2(120, 364);
+        localStandPos = new Vector2(92, 348);
+
+        standPos = new Vector3(-125.5f, -119.5f, 0);
+        standOffset = new Vector2(-1.5f, 17f);
+        standSize = new Vector2(177f, 118f);
+
+        readyPos = new Vector3(-127.5f, -114.5f, 0);
+        readyOffset = new Vector2(0.1f, 0.5f);
+        readySize = new Vector2(194f, 135f);
+
+        jumpOffset = new Vector2(-0.4f, 4f);
+        jumpSize = new Vector2(252f, 161f);
+        slideOffset = new Vector2(-0.2f, -0.4f);
+        slideSize = new Vector2(284f, 117f);
+
+        walkPosY = -112f;
+        walkOffset = new Vector2(-1.3f, -0.4f);
+        walkSize = new Vector2(202f, 157f);
     }
 
     private void Update() {
@@ -65,10 +95,10 @@ public class Cat : MonoBehaviour {
                 projector.projectile.SetActive(true);
                 jumpForce = MIN_JUMP_FORCE;
 
-                // Ready - 0.1 / 0.5 / 194 / 135
+                transform.position = readyPos;
                 spriteRenderer.sprite = readySprite;
-                boxCollider.offset = new Vector2(0.1f, 0.5f);
-                boxCollider.size = new Vector2(194f, 135f);
+                boxCollider.offset = readyOffset;
+                boxCollider.size = readySize;
             }
 
             if (Input.GetMouseButton(0)) {
@@ -89,26 +119,23 @@ public class Cat : MonoBehaviour {
 
             if (Input.GetMouseButtonUp(0)) {
                 audioJump.Play();
-                // animator.SetTrigger("Jump");
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
 
-                // Jump - -0.4 / 4 / 252 / 161 
                 spriteRenderer.sprite = jumpSprite;
-                boxCollider.offset = new Vector2(-0.4f, 4f);
-                boxCollider.size = new Vector2(252f, 161f);
+                boxCollider.offset = jumpOffset;
+                boxCollider.size = jumpSize;
             }
         }
 
         if (isRepositioning) {
-            // Walk - -1.3 / -0.4 / 202 / 157
-            spriteRenderer.sprite = walkingSprite;
-            boxCollider.offset = new Vector2(-0.3f, -0.4f);
-            boxCollider.size = new Vector2(202f, 157f);
+            transform.position = new Vector3(transform.position.x, walkPosY, 0);
+            spriteRenderer.sprite = walkSprite;
+            boxCollider.offset = walkOffset;
+            boxCollider.size = walkSize;
+
             animator.enabled = true;
-            // animator.SetTrigger("Walk");
-            // animator.SetBool("Walking", true);
             Reposition("Right");
 
             if (!isScoreAdded) {
@@ -138,17 +165,15 @@ public class Cat : MonoBehaviour {
     }
 
     private void Stop() {
-        // Stand - -1.5 / 17 / 117 / 118
+        transform.localPosition = localStandPos;
         spriteRenderer.sprite = standSprite;
-        boxCollider.offset = new Vector2(-1.5f, 17f);
-        boxCollider.size = new Vector2(176f, 118f);
+        boxCollider.offset = standOffset;
+        boxCollider.size = standSize;
+
         animator.enabled = false;
-        // animator.SetTrigger("Stand");
         isRepositioning = false;
         isJumping = false;
         isScoreAdded = false;
-
-        transform.localPosition = defaultPos;
     }
 
     private void Die() {
@@ -173,11 +198,9 @@ public class Cat : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D other) {
         if (isJumping && isLanding) {
-            // Slide - 0.2 / -0.4 / 284 / 117
-            spriteRenderer.sprite = landingSprite;
-            boxCollider.offset = new Vector2(-0.2f, -0.4f);
-            boxCollider.size = new Vector2(284f, 117f);
-            // animator.SetTrigger("Slide");
+            spriteRenderer.sprite = slideSprite;
+            boxCollider.offset = slideOffset;
+            boxCollider.size = slideSize;
         }
 
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
@@ -188,7 +211,7 @@ public class Cat : MonoBehaviour {
     }
 
     private bool CheckEndOnIceberg() {
-        float positionX = 120f;
+        float positionX = 92f;
         if (transform.localPosition.x >= positionX) {
             return true;
         }
