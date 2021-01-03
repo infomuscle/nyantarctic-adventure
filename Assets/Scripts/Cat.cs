@@ -91,13 +91,9 @@ public class Cat : MonoBehaviour {
 
         if (!isJumping) {
             if (Input.GetMouseButtonDown(0)) {
+                ChangeSprite("Ready");
                 projector.projectile.SetActive(true);
                 jumpForce = MIN_JUMP_FORCE;
-
-                transform.position = readyPos;
-                spriteRenderer.sprite = readySprite;
-                boxCollider.offset = readyOffset;
-                boxCollider.size = readySize;
             }
 
             if (Input.GetMouseButton(0)) {
@@ -117,26 +113,20 @@ public class Cat : MonoBehaviour {
             }
 
             if (Input.GetMouseButtonUp(0)) {
+                ChangeSprite("Jump");
                 catAudio.clip = jumpClip;
                 catAudio.Play();
-                
+
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
-
-                spriteRenderer.sprite = jumpSprite;
-                boxCollider.offset = jumpOffset;
-                boxCollider.size = jumpSize;
             }
         }
 
         if (isRepositioning) {
-            transform.position = new Vector3(transform.position.x, walkPosY, 0);
-            spriteRenderer.sprite = walkSprite;
-            boxCollider.offset = walkOffset;
-            boxCollider.size = walkSize;
-
+            ChangeSprite("Walk");
             animator.enabled = true;
+
             Reposition("Right");
 
             if (!isScoreAdded) {
@@ -166,12 +156,9 @@ public class Cat : MonoBehaviour {
     }
 
     private void Stop() {
-        transform.localPosition = localStandPos;
-        spriteRenderer.sprite = standSprite;
-        boxCollider.offset = standOffset;
-        boxCollider.size = standSize;
-
+        ChangeSprite("Stand");
         animator.enabled = false;
+
         isRepositioning = false;
         isJumping = false;
         isScoreAdded = false;
@@ -198,9 +185,7 @@ public class Cat : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D other) {
         if (isJumping && isLanding) {
-            spriteRenderer.sprite = slideSprite;
-            boxCollider.offset = slideOffset;
-            boxCollider.size = slideSize;
+            ChangeSprite("Slide");
         }
 
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
@@ -221,5 +206,38 @@ public class Cat : MonoBehaviour {
 
     private void ChangeParent() {
         gameObject.transform.parent = GameObject.FindWithTag("TargetIceberg").transform;
+    }
+
+    private void ChangeSprite(string status) {
+        switch (status) {
+            case "Stand":
+                transform.localPosition = localStandPos;
+                spriteRenderer.sprite = standSprite;
+                boxCollider.offset = standOffset;
+                boxCollider.size = standSize;
+                break;
+            case "Ready":
+                transform.position = readyPos;
+                spriteRenderer.sprite = readySprite;
+                boxCollider.offset = readyOffset;
+                boxCollider.size = readySize;
+                break;
+            case "Jump":
+                spriteRenderer.sprite = jumpSprite;
+                boxCollider.offset = jumpOffset;
+                boxCollider.size = jumpSize;
+                break;
+            case "Slide":
+                spriteRenderer.sprite = slideSprite;
+                boxCollider.offset = slideOffset;
+                boxCollider.size = slideSize;
+                break;
+            case "Walk":
+                transform.position = new Vector3(transform.position.x, walkPosY, 0);
+                spriteRenderer.sprite = walkSprite;
+                boxCollider.offset = walkOffset;
+                boxCollider.size = walkSize;
+                break;
+        }
     }
 }
