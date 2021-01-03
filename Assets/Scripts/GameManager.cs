@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void NextStep() {
         // AddScore(1);
         MoveBacgkrounds();

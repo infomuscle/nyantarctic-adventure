@@ -8,7 +8,7 @@ public class Cat : MonoBehaviour {
     private float addForce = 0;
     private bool forceUp = true;
 
-    private bool isScoreAdded = false;
+    private int scoreOnReady;
 
     private bool isDead = false;
     private bool isJumping = false;
@@ -54,13 +54,12 @@ public class Cat : MonoBehaviour {
 
 
     private void Start() {
-        rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
-        projector = GetComponent<Projector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        projector = GetComponent<Projector>();
 
         animator.enabled = false;
 
@@ -94,6 +93,7 @@ public class Cat : MonoBehaviour {
                 ChangeSprite("Ready");
                 projector.projectile.SetActive(true);
                 jumpForce = MIN_JUMP_FORCE;
+                scoreOnReady = GameManager.instance.getScore();
             }
 
             if (Input.GetMouseButton(0)) {
@@ -129,9 +129,8 @@ public class Cat : MonoBehaviour {
 
             Reposition("Right");
 
-            if (!isScoreAdded) {
+            if (GameManager.instance.getScore() == scoreOnReady) {
                 GameManager.instance.AddScore(1);
-                isScoreAdded = true;
             }
 
             if (CheckEndOnIceberg()) {
@@ -161,7 +160,6 @@ public class Cat : MonoBehaviour {
 
         isRepositioning = false;
         isJumping = false;
-        isScoreAdded = false;
     }
 
     private void Die() {
