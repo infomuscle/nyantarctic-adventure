@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 
 public class Cat : MonoBehaviour {
-    public AudioSource audioDeath;
-    public AudioSource audioJump;
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
     private const float MIN_JUMP_FORCE = 3000;
     private float jumpForce = 0;
     private float addForce = 0;
     private bool forceUp = true;
-
 
     private bool isScoreAdded = false;
 
@@ -24,7 +21,9 @@ public class Cat : MonoBehaviour {
     private BoxCollider2D boxCollider;
 
     private Animator animator;
-    // private AudioSource catAudio;
+    private AudioSource catAudio;
+    public AudioClip jumpClip;
+    public AudioClip deathClip;
 
     private Projector projector;
     private Vector2 direction;
@@ -36,28 +35,28 @@ public class Cat : MonoBehaviour {
     public Sprite slideSprite;
     public Sprite walkSprite;
 
-    private Vector3 standPos = new Vector3(-125.5f, -119.5f, 0);
-    private Vector2 standOffset = new Vector2(-1.5f, 17f);
-    private Vector2 standSize = new Vector2(177f, 118f);
+    private Vector3 standPos;
+    private Vector2 standOffset;
+    private Vector2 standSize;
 
-    private Vector3 readyPos = new Vector3(-127.5f, -114.5f, 0);
-    private Vector2 readyOffset = new Vector2(0.1f, 0.5f);
-    private Vector2 readySize = new Vector2(194f, 135f);
+    private Vector3 readyPos;
+    private Vector2 readyOffset;
+    private Vector2 readySize;
 
-    private Vector2 jumpOffset = new Vector2(-0.4f, 4f);
-    private Vector2 jumpSize = new Vector2(252f, 161f);
-    private Vector2 slideOffset = new Vector2(-0.2f, -0.4f);
-    private Vector2 slideSize = new Vector2(284f, 117f);
+    private Vector2 jumpOffset;
+    private Vector2 jumpSize;
+    private Vector2 slideOffset;
+    private Vector2 slideSize;
 
-    private float walkPosY = -112f;
-    private Vector2 walkOffset = new Vector2(-1.3f, -0.4f);
-    private Vector2 walkSize = new Vector2(202f, 157f);
+    private float walkPosY;
+    private Vector2 walkOffset;
+    private Vector2 walkSize;
 
 
     private void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        // catAudio = GetComponent<AudioSource>();
+        catAudio = GetComponent<AudioSource>();
         projector = GetComponent<Projector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -118,7 +117,9 @@ public class Cat : MonoBehaviour {
             }
 
             if (Input.GetMouseButtonUp(0)) {
-                audioJump.Play();
+                catAudio.clip = jumpClip;
+                catAudio.Play();
+                
                 isJumping = true;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(new Vector2(jumpForce, jumpForce));
@@ -178,9 +179,8 @@ public class Cat : MonoBehaviour {
 
     private void Die() {
         Debug.Log("Die!");
-        // catAudio.clip = deathClip;
-        // catAudio.Play();
-        audioDeath.Play();
+        catAudio.clip = deathClip;
+        catAudio.Play();
         GameManager.instance.OnPlayerDead();
     }
 
