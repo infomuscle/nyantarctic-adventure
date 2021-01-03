@@ -127,15 +127,26 @@ public class Cat : MonoBehaviour {
             ChangeSprite("Walk");
             animator.enabled = true;
 
-            Reposition("Right");
-
             if (GameManager.instance.getScore() == scoreOnReady) {
                 GameManager.instance.AddScore(1);
             }
 
-            if (CheckEndOnIceberg()) {
-                Stop();
-                GameManager.instance.NextStep();
+            // Positin Check -> Left||Right
+            if (transform.localPosition.x <= 92f) {
+                Reposition("Right");
+                if (CheckEndOnIceberg("Right")) {
+                    Stop();
+                    GameManager.instance.NextStep();
+                }
+            }
+            else if (transform.localPosition.x >= 92f) {
+                spriteRenderer.flipX = true;
+                Reposition("Left");
+                if (CheckEndOnIceberg("Left")) {
+                    spriteRenderer.flipX = false;
+                    Stop();
+                    GameManager.instance.NextStep();
+                }
             }
         }
     }
@@ -193,11 +204,20 @@ public class Cat : MonoBehaviour {
         }
     }
 
-    private bool CheckEndOnIceberg() {
+    private bool CheckEndOnIceberg(string forward) {
         float positionX = 92f;
-        if (transform.localPosition.x >= positionX) {
-            return true;
+
+        if (forward == "Right") {
+            if (transform.localPosition.x >= positionX) {
+                return true;
+            }
         }
+        else if (forward == "Left") {
+            if (transform.localPosition.x <= positionX) {
+                return true;
+            }
+        }
+
 
         return false;
     }
