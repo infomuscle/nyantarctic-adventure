@@ -223,7 +223,7 @@ public class Cat : MonoBehaviour {
     }
 
     private void ChangeParent() {
-        gameObject.transform.parent = GameObject.FindWithTag("TargetIceberg").transform;
+        gameObject.transform.SetParent(GameObject.FindWithTag("TargetIceberg").transform);
     }
 
     private void ChangeSprite(string status) {
