@@ -131,22 +131,19 @@ public class Cat : MonoBehaviour {
                 GameManager.instance.AddScore(1);
             }
 
-            // Positin Check -> Left||Right
-            if (transform.localPosition.x <= 92f) {
-                Reposition("Right");
-                if (CheckEndOnIceberg("Right")) {
-                    Stop();
-                    GameManager.instance.NextStep();
-                }
-            }
-            else if (transform.localPosition.x >= 92f) {
+            string way = (transform.localPosition.x <= 92f) ? "Right" : "Left";
+            if (way == "Left") {
                 spriteRenderer.flipX = true;
-                Reposition("Left");
-                if (CheckEndOnIceberg("Left")) {
+            }
+
+            Reposition(way);
+            if (CheckEndOnIceberg(way)) {
+                if (way == "Left") {
                     spriteRenderer.flipX = false;
-                    Stop();
-                    GameManager.instance.NextStep();
                 }
+
+                Stop();
+                GameManager.instance.NextStep();
             }
         }
     }
