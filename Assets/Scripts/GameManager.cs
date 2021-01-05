@@ -48,14 +48,6 @@ public class GameManager : MonoBehaviour {
         MoveIceberg();
     }
 
-    public void OnPlayerDead() {
-        Debug.Log("OnPlayerDead!");
-        isGameOver = true;
-        SaveBestScore();
-        SetGameScoretext();
-        gameOverUI.SetActive(true);
-    }
-
     private void MoveIceberg() {
         for (int i = 0; i < icebergs.Length; i++) {
             icebergs[i].isMove = true;
@@ -66,6 +58,15 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < backgrounds.Length; i++) {
             backgrounds[i].isMove = true;
         }
+    }
+
+    public void OnPlayerDead() {
+        Debug.Log("OnPlayerDead!");
+        isGameOver = true;
+        Handheld.Vibrate();
+        SaveBestScore();
+        SetGameScoretext();
+        gameOverUI.SetActive(true);
     }
 
     private void SaveBestScore() {
