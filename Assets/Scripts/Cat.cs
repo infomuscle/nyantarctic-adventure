@@ -3,7 +3,7 @@
 public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
-    private const float MIN_JUMP_FORCE = 3000;
+    private const float MIN_JUMP_FORCE = 3900;
     private float jumpForce = 0;
     private float addForce = 0;
     private bool forceUp = true;
@@ -56,6 +56,7 @@ public class Cat : MonoBehaviour {
     private void Start() {
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
+        catAudio.volume = 100f;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -88,7 +89,7 @@ public class Cat : MonoBehaviour {
             return;
         }
 
-        if (!isJumping) {
+        if (!isJumping && !isRepositioning) {
             if (Input.GetMouseButtonDown(0)) {
                 ChangeSprite("Ready");
                 projector.projectile.SetActive(true);

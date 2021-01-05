@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextStep() {
-        // AddScore(1);
         MoveBacgkrounds();
         MoveIceberg();
     }
