@@ -56,7 +56,7 @@ public class Cat : MonoBehaviour {
     private void Start() {
         animator = GetComponent<Animator>();
         catAudio = GetComponent<AudioSource>();
-        catAudio.volume = 100f;
+        catAudio.volume = PlayerPrefs.GetFloat("sfxVol", 0.7f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
