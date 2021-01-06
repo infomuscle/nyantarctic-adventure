@@ -65,7 +65,7 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        localStandPos = new Vector2(92, 348);
+        localStandPos = new Vector2(92, 277);
         standPos = new Vector3(-125.5f, -119.5f, 0);
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);

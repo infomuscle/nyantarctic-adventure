@@ -3,8 +3,10 @@
 public class Iceberg : MonoBehaviour {
     private const float DEFAULT_POS_Y = -224f;
     private const float SPEED = 1000f;
-    private const float MIN_WIDTH_SCALE = 0.08f;
-    private const float MAX_WIDTH_SCALE = 0.2f;
+    // private const float MIN_WIDTH_SCALE = 0.08f;
+    // private const float MAX_WIDTH_SCALE = 0.2f;
+    private const float MIN_WIDTH_SCALE = 0.2f;
+    private const float MAX_WIDTH_SCALE = 0.7f;
     
     public bool isMove = false;
 
@@ -97,7 +99,7 @@ public class Iceberg : MonoBehaviour {
 
     private void ChangeWidth() {
         float newWidth = Random.Range(MIN_WIDTH_SCALE, MAX_WIDTH_SCALE);
-        transform.localScale = new Vector2(newWidth, 0.3f);
+        transform.localScale = new Vector2(newWidth, 0.4f);
     }
 
     private void ChangeTag() {
