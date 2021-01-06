@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
 public class Iceberg : MonoBehaviour {
-    // private const float DEFAULT_POS_Y = -224f;
     private const float DEFAULT_POS_Y = -230f;
     private const float SPEED = 1000f;
     private const float MIN_WIDTH_SCALE = 0.2f;
     private const float MAX_WIDTH_SCALE = 0.6f;
-    
+
     public bool isMove = false;
 
     private float width;

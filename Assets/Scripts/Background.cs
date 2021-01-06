@@ -2,7 +2,8 @@
 
 public class Background : MonoBehaviour {
     private float SPEED = 90f;
-    private float MOVE_DISTANCE = 30f;
+    // private float MOVE_DISTANCE = 30f;
+    private float MOVE_DISTANCE = 300f;
 
     public bool isMove;
 
@@ -28,7 +29,7 @@ public class Background : MonoBehaviour {
                 }
             }
 
-            if (transform.position.x <= -width) {
+            if (transform.position.x <= -width + 245) {
                 Reposition();
             }
         }
@@ -54,5 +55,9 @@ public class Background : MonoBehaviour {
     private void Reposition() {
         Vector2 offset = new Vector2(width * 2f, 0);
         transform.position = (Vector2) transform.position + offset;
+        
+        // Should Calculate Move Distance When Repositioned
+        isMove = false;
+        orgnPosX = transform.position.x;
     }
 }
