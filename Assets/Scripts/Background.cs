@@ -57,7 +57,6 @@ public class Background : MonoBehaviour {
         transform.position = (Vector2) transform.position + offset;
         
         // Should Calculate Move Distance When Repositioned
-        isMove = false;
-        orgnPosX = transform.position.x;
+        orgnPosX = transform.position.x + (orgnPosX - (-width + 245));
     }
 }
