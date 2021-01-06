@@ -54,18 +54,18 @@ public class Cat : MonoBehaviour {
 
 
     private void Start() {
-        animator = GetComponent<Animator>();
-        catAudio = GetComponent<AudioSource>();
-        catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         projector = GetComponent<Projector>();
 
+        animator = GetComponent<Animator>();
         animator.enabled = false;
 
-        localStandPos = new Vector2(92, 348);
+        catAudio = GetComponent<AudioSource>();
+        catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
+        localStandPos = new Vector2(92, 348);
         standPos = new Vector3(-125.5f, -119.5f, 0);
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);
