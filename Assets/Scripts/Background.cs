@@ -2,8 +2,11 @@
 
 public class Background : MonoBehaviour {
     private float SPEED = 90f;
-    // private float MOVE_DISTANCE = 30f;
-    private float MOVE_DISTANCE = 300f;
+    private float MOVE_DISTANCE = 30f;
+    // private float SPEED = 500f;
+    // private float MOVE_DISTANCE = 500f;
+
+    private float offsetX = 245;
 
     public bool isMove;
 
@@ -29,7 +32,7 @@ public class Background : MonoBehaviour {
                 }
             }
 
-            if (transform.position.x <= -width + 245) {
+            if (transform.position.x <= -width + offsetX) {
                 Reposition();
             }
         }
@@ -41,6 +44,7 @@ public class Background : MonoBehaviour {
 
     private void Stop() {
         isMove = false;
+        transform.position = new Vector2(orgnPosX - MOVE_DISTANCE, transform.position.y);
         orgnPosX = transform.position.x;
     }
 
@@ -54,9 +58,11 @@ public class Background : MonoBehaviour {
 
     private void Reposition() {
         Vector2 offset = new Vector2(width * 2f, 0);
-        transform.position = (Vector2) transform.position + offset;
-        
+        // transform.position = (Vector2) transform.position + offset;
+        transform.position = new Vector2(-width + offsetX, transform.position.y) + offset;
+
         // Should Calculate Move Distance When Repositioned
-        orgnPosX = transform.position.x + (orgnPosX - (-width + 245));
+        orgnPosX = transform.position.x + (orgnPosX - (-width + offsetX));
+        // orgnPosX = transform.position.x + MOVE_DISTANCE - (orgnPosX - (-width + offsetX));
     }
 }
