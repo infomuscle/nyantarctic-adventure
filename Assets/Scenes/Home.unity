@@ -327,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSlider: {fileID: 1506694718}
   sfxSlider: {fileID: 1553115162}
+  vibToggle: {fileID: 0}
 --- !u!1 &152316561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,7 +2439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -75.2}
+  m_AnchoredPosition: {x: 0, y: -75.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297521711

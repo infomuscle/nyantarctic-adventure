@@ -62,7 +62,9 @@ public class GameManager : MonoBehaviour {
     public void OnPlayerDead() {
         Debug.Log("OnPlayerDead!");
         isGameOver = true;
-        Handheld.Vibrate();
+        if (PlayerPrefs.GetInt("vibOn") == 1) {
+            Handheld.Vibrate();
+        }
         SaveBestScore();
         SetGameScoretext();
         gameOverUI.SetActive(true);
