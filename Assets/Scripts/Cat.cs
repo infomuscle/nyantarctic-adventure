@@ -70,11 +70,11 @@ public class Cat : MonoBehaviour {
 
         stopPosX = 45;
 
-        localStandPosY = 277f;
+        localStandPosY = 330;
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);
 
-        localReadyPosY = 287f;
+        localReadyPosY = 340f;
         readyOffset = new Vector2(0.1f, 0.5f);
         readySize = new Vector2(194f, 135f);
 
