@@ -23,7 +23,6 @@ public class ButtonController : MonoBehaviour {
         Debug.Log("TouchButtonSettings!");
         settingsUI.SetActive(true);
         // SceneManager.LoadScene("Settings");
-
     }
 
     public void TouchButtonNoads() {
@@ -44,5 +43,19 @@ public class ButtonController : MonoBehaviour {
 
     public void TouchButtonRank() {
         Debug.Log("TouchButtonRank!");
+    }
+
+
+    // For Settings
+    public void TouchButtonLanguage() {
+        Debug.Log("TouchButtonLanguage!");
+    }
+
+    public void TouchButtonAsk() {
+        Debug.Log("TouchButtonAsk!");
+    }
+
+    public void TouchButtonRestore() {
+        Debug.Log("TouchButtonRestore!");
     }
 }
