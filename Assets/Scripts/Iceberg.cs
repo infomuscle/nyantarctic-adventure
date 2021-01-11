@@ -34,7 +34,7 @@ public class Iceberg : MonoBehaviour {
             Move();
         }
 
-        switch (this.tag) {
+        switch (tag) {
             case "StandIceberg":
                 if (!isRepositioning && CheckPositionOfScreen("LeftOut")) {
                     Repositon();
@@ -62,7 +62,7 @@ public class Iceberg : MonoBehaviour {
     private void Repositon() {
         isRepositioning = true;
         transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
-        targetPosX = Random.Range(-36f, rightEndPosX);
+        targetPosX = Random.Range(0f, rightEndPosX);
 
         ChangeWidth();
     }
