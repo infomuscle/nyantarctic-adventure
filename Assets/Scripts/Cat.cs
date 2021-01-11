@@ -34,13 +34,17 @@ public class Cat : MonoBehaviour {
     public Sprite slideSprite;
     public Sprite walkSprite;
 
+
+    private float stopPosX;
+
     private Vector2 localStandPos;
+    private float localStandPosY;
     private Vector3 standPos;
     private Vector2 standOffset;
     private Vector2 standSize;
 
-    private Vector2 localReadyPos;
     private Vector3 readyPos;
+    private float localReadyPosY;
     private Vector2 readyOffset;
     private Vector2 readySize;
 
@@ -66,13 +70,13 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        // localStandPos = new Vector2(92, 277);
         localStandPos = new Vector2(45, 277);
+        localStandPosY = 277f;
         standPos = new Vector3(-125.5f, -119.5f, 0);
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);
 
-        localReadyPos = new Vector2(45, 286);
+        localReadyPosY = 287f;
         readyPos = new Vector3(-127.5f, -114.5f, 0);
         readyOffset = new Vector2(0.1f, 0.5f);
         readySize = new Vector2(194f, 135f);
@@ -135,7 +139,7 @@ public class Cat : MonoBehaviour {
                 GameManager.instance.AddScore(1);
             }
 
-            string way = (transform.localPosition.x <= 92f) ? "Right" : "Left";
+            string way = (transform.localPosition.x <= stopPosX) ? "Right" : "Left";
             if (way == "Left") {
                 spriteRenderer.flipX = true;
             }
@@ -200,6 +204,11 @@ public class Cat : MonoBehaviour {
 
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
+
+            // stopPosX Setting
+            stopPosX = (transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x)/2;
+            Debug.Log(stopPosX);
+
             isRepositioning = true;
             isLanding = false;
         }
@@ -209,12 +218,12 @@ public class Cat : MonoBehaviour {
         float positionX = 92f;
 
         if (forward == "Right") {
-            if (transform.localPosition.x >= positionX) {
+            if (transform.localPosition.x >= stopPosX) {
                 return true;
             }
         }
         else if (forward == "Left") {
-            if (transform.localPosition.x <= positionX) {
+            if (transform.localPosition.x <= stopPosX) {
                 return true;
             }
         }
@@ -230,14 +239,14 @@ public class Cat : MonoBehaviour {
     private void ChangeSprite(string status) {
         switch (status) {
             case "Stand":
-                transform.localPosition = localStandPos;
+                // transform.localPosition = localStandPos;
+                transform.localPosition = new Vector2(stopPosX, localStandPosY);
                 spriteRenderer.sprite = standSprite;
                 boxCollider.offset = standOffset;
                 boxCollider.size = standSize;
                 break;
             case "Ready":
-                // transform.position = readyPos;
-                transform.localPosition = localReadyPos;
+                transform.localPosition = new Vector2(stopPosX, localReadyPosY);
                 spriteRenderer.sprite = readySprite;
                 boxCollider.offset = readyOffset;
                 boxCollider.size = readySize;
