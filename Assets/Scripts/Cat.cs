@@ -37,13 +37,10 @@ public class Cat : MonoBehaviour {
 
     private float stopPosX;
 
-    private Vector2 localStandPos;
     private float localStandPosY;
-    private Vector3 standPos;
     private Vector2 standOffset;
     private Vector2 standSize;
 
-    private Vector3 readyPos;
     private float localReadyPosY;
     private Vector2 readyOffset;
     private Vector2 readySize;
@@ -70,14 +67,13 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        localStandPos = new Vector2(45, 277);
+        stopPosX = 45;
+
         localStandPosY = 277f;
-        standPos = new Vector3(-125.5f, -119.5f, 0);
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);
 
         localReadyPosY = 287f;
-        readyPos = new Vector3(-127.5f, -114.5f, 0);
         readyOffset = new Vector2(0.1f, 0.5f);
         readySize = new Vector2(194f, 135f);
 
@@ -205,10 +201,7 @@ public class Cat : MonoBehaviour {
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
 
-            // stopPosX Setting
-            stopPosX = (transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x)/2;
-            Debug.Log(stopPosX);
-
+            stopPosX = (transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2;
             isRepositioning = true;
             isLanding = false;
         }
@@ -239,7 +232,6 @@ public class Cat : MonoBehaviour {
     private void ChangeSprite(string status) {
         switch (status) {
             case "Stand":
-                // transform.localPosition = localStandPos;
                 transform.localPosition = new Vector2(stopPosX, localStandPosY);
                 spriteRenderer.sprite = standSprite;
                 boxCollider.offset = standOffset;
