@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public Text scoreText;
+    public Text fishScoreText;
     public Text gameScoreText;
     public Text bestScoreText;
     public GameObject gameOverUI;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
         icebergs[1] = GameObject.FindWithTag("TargetIceberg").GetComponent<Iceberg>();
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
+        fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
     }
 
     public void AddScore(int newScore) {
@@ -40,6 +42,14 @@ public class GameManager : MonoBehaviour {
 
     public int getScore() {
         return score;
+    }
+
+    public void AddFish(int newScore) {
+        if (!isGameOver) {
+            score += newScore;
+            PlayerPrefs.SetInt("fish", PlayerPrefs.GetInt("fish") + newScore);
+            fishScoreText.text =PlayerPrefs.GetInt("fish", 0).ToString();
+        }
     }
 
     public void NextStep() {
@@ -65,8 +75,9 @@ public class GameManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("vibOn") == 1) {
             Handheld.Vibrate();
         }
+
         SaveBestScore();
-        SetGameScoretext();
+        SetGameScoreText();
         gameOverUI.SetActive(true);
     }
 
@@ -80,7 +91,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void SetGameScoretext() {
+    private void SetGameScoreText() {
         gameScoreText.text = "Score: " + score;
         bestScoreText.text = "Best: " + PlayerPrefs.GetInt("Best");
     }

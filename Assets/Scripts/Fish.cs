@@ -14,7 +14,15 @@ public class Fish : MonoBehaviour, IItem {
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
+
         StartCoroutine(Jump(3));
+    }
+
+    public void Update() {
+        if (rigidbody.position.y < DEFAULT_POS_Y) {
+            rigidbody.isKinematic = true;
+            rigidbody.position = new Vector3(-10, DEFAULT_POS_Y);
+        }
     }
 
     public void Use() {
@@ -26,5 +34,12 @@ public class Fish : MonoBehaviour, IItem {
         rigidbody.AddForce(new Vector2(0, JUMP_FORCE));
         yield return new WaitForSeconds(delay);
         StartCoroutine(Jump(3));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player") {
+            Debug.Log("FISH!");
+            GameManager.instance.AddFish(1);
+        }
     }
 }

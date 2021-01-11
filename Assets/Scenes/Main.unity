@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 20651974}
   - component: {fileID: 20651973}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ImageFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,6 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 588128545}
+  fishScoreText: {fileID: 1227290604}
   gameScoreText: {fileID: 1258497269}
   bestScoreText: {fileID: 615144187}
   gameOverUI: {fileID: 1587883850}
@@ -2375,7 +2376,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2399,7 +2400,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100823110}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2931,7 +2932,7 @@ GameObject:
   - component: {fileID: 1227290604}
   - component: {fileID: 1227290606}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3882,7 +3883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2006692552
 MonoBehaviour:
   m_ObjectHideFlags: 0
