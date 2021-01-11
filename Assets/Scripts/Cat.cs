@@ -202,10 +202,8 @@ public class Cat : MonoBehaviour {
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
 
-            stopPosX = (transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2;
-            stopPosX = (float) Math.Round(stopPosX);
-            Debug.Log(stopPosX);
-                isRepositioning = true;
+            stopPosX = (float) (Math.Round(transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2);
+            isRepositioning = true;
             isLanding = false;
         }
     }
