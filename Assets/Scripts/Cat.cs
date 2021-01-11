@@ -15,7 +15,6 @@ public class Cat : MonoBehaviour {
     private bool isLanding = false;
     private bool isRepositioning = false;
 
-    private Vector2 localStandPos;
 
     private Rigidbody2D rigidbody;
     private BoxCollider2D boxCollider;
@@ -35,10 +34,12 @@ public class Cat : MonoBehaviour {
     public Sprite slideSprite;
     public Sprite walkSprite;
 
+    private Vector2 localStandPos;
     private Vector3 standPos;
     private Vector2 standOffset;
     private Vector2 standSize;
 
+    private Vector2 localReadyPos;
     private Vector3 readyPos;
     private Vector2 readyOffset;
     private Vector2 readySize;
@@ -65,11 +66,13 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        localStandPos = new Vector2(92, 277);
+        // localStandPos = new Vector2(92, 277);
+        localStandPos = new Vector2(45, 277);
         standPos = new Vector3(-125.5f, -119.5f, 0);
         standOffset = new Vector2(-1.5f, 17f);
         standSize = new Vector2(177f, 118f);
 
+        localReadyPos = new Vector2(45, 286);
         readyPos = new Vector3(-127.5f, -114.5f, 0);
         readyOffset = new Vector2(0.1f, 0.5f);
         readySize = new Vector2(194f, 135f);
@@ -233,7 +236,8 @@ public class Cat : MonoBehaviour {
                 boxCollider.size = standSize;
                 break;
             case "Ready":
-                transform.position = readyPos;
+                // transform.position = readyPos;
+                transform.localPosition = localReadyPos;
                 spriteRenderer.sprite = readySprite;
                 boxCollider.offset = readyOffset;
                 boxCollider.size = readySize;
