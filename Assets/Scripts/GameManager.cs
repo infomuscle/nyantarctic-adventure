@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour {
     }
     
     private void MoveFish() {
+        fish.gameObject.SetActive(false);
+        fish.gameObject.SetActive(true);
         fish.Reposition(0, 10);
     }
 

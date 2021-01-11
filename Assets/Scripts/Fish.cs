@@ -6,22 +6,27 @@ public class Fish : MonoBehaviour, IItem {
     private const float JUMP_FORCE = 50000f;
 
     private Rigidbody2D rigidbody;
-    private BoxCollider2D boxCollider;
 
     private float posX;
 
-    public void Start() {
+    private IEnumerator jumpEnumerator;
+
+    public void Awake() {
+        jumpEnumerator = Jump(3);
         rigidbody = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        rigidbody.isKinematic = true;
+        StopCoroutine(jumpEnumerator);
+        StartCoroutine(jumpEnumerator);
+    }
 
-
-        StartCoroutine(Jump(3));
+    public void Start() {
     }
 
     public void Update() {
         if (rigidbody.position.y < DEFAULT_POS_Y) {
             rigidbody.isKinematic = true;
             rigidbody.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
+            transform.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
         }
     }
 
@@ -36,6 +41,7 @@ public class Fish : MonoBehaviour, IItem {
     }
 
     public void Reposition(float posXleft, float posXRight) {
+        gameObject.SetActive(true);
         float newPosX = Random.Range(posXleft, posXRight);
         transform.position = new Vector2(newPosX, DEFAULT_POS_Y);
     }
@@ -44,6 +50,7 @@ public class Fish : MonoBehaviour, IItem {
         if (other.tag == "Player") {
             Debug.Log("FISH!");
             GameManager.instance.AddFish(1);
+            gameObject.SetActive(false);
         }
     }
 }
