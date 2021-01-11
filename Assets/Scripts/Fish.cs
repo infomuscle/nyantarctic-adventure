@@ -21,7 +21,7 @@ public class Fish : MonoBehaviour, IItem {
     public void Update() {
         if (rigidbody.position.y < DEFAULT_POS_Y) {
             rigidbody.isKinematic = true;
-            rigidbody.position = new Vector3(-10, DEFAULT_POS_Y);
+            rigidbody.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
         }
     }
 
@@ -29,11 +29,15 @@ public class Fish : MonoBehaviour, IItem {
     }
 
     IEnumerator Jump(float delay) {
-        Debug.Log(Time.time);
         rigidbody.isKinematic = false;
         rigidbody.AddForce(new Vector2(0, JUMP_FORCE));
         yield return new WaitForSeconds(delay);
         StartCoroutine(Jump(3));
+    }
+
+    public void Reposition(float posXleft, float posXRight) {
+        float newPosX = Random.Range(posXleft, posXRight);
+        transform.position = new Vector2(newPosX, DEFAULT_POS_Y);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

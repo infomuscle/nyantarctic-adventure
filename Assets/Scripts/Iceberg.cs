@@ -101,12 +101,12 @@ public class Iceberg : MonoBehaviour {
     }
 
     private void ChangeTag() {
-        switch (this.tag) {
+        switch (tag) {
             case "StandIceberg":
-                this.tag = "TargetIceberg";
+                tag = "TargetIceberg";
                 break;
             case "TargetIceberg":
-                this.tag = "StandIceberg";
+                tag = "StandIceberg";
                 break;
         }
     }

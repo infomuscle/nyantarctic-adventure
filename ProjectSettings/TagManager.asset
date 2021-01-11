@@ -8,6 +8,7 @@ TagManager:
   - EndPoint
   - StandIceberg
   - TargetIceberg
+  - Fish
   layers:
   - Default
   - TransparentFX
