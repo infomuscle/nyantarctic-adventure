@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
@@ -202,7 +203,9 @@ public class Cat : MonoBehaviour {
             ChangeParent();
 
             stopPosX = (transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2;
-            isRepositioning = true;
+            stopPosX = (float) Math.Round(stopPosX);
+            Debug.Log(stopPosX);
+                isRepositioning = true;
             isLanding = false;
         }
     }
