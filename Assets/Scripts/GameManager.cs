@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour {
     public bool isGameOver = false;
 
     private int score = 0;
+    private int step = 0;
     private Iceberg[] icebergs;
     private Background[] backgrounds;
     private Fish fish;
+
 
     private void Awake() {
         if (instance == null) {
@@ -51,14 +53,17 @@ public class GameManager : MonoBehaviour {
         if (!isGameOver) {
             score += newScore;
             PlayerPrefs.SetInt("fish", PlayerPrefs.GetInt("fish") + newScore);
-            fishScoreText.text =PlayerPrefs.GetInt("fish", 0).ToString();
+            fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
         }
     }
 
     public void NextStep() {
-        MoveBacgkrounds();
-        MoveIceberg();
-        MoveFish();
+        if (score > step) {
+            MoveBacgkrounds();
+            MoveIceberg();
+            MoveFish();
+            step++;
+        }
     }
 
     private void MoveIceberg() {
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour {
             backgrounds[i].isMove = true;
         }
     }
-    
+
     private void MoveFish() {
         fish.gameObject.SetActive(false);
         fish.gameObject.SetActive(true);

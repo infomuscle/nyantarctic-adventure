@@ -206,7 +206,6 @@ public class Cat : MonoBehaviour {
             ChangeParent();
 
             stopPosX = (float) (Math.Round(transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2);
-            Debug.Log(stopPosX);
             isRepositioning = true;
             isLanding = false;
         }
