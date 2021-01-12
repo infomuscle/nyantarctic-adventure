@@ -5,6 +5,18 @@ public class Iceberg : MonoBehaviour {
     private const float SPEED = 1000f;
     private const float MIN_WIDTH_SCALE = 0.2f;
     private const float MAX_WIDTH_SCALE = 0.6f;
+    private const int MAX_CENTER_CNT = 5;
+    private const int MIN_CENTER_CNT = 0;
+
+    public GameObject centerPrefab;
+    public GameObject leftPrefab;
+    public GameObject rightPrefab;
+
+    private GameObject left;
+    private GameObject[] centers;
+    private GameObject right;
+
+    private BoxCollider2D icebergCollider;
 
     public bool isMove = false;
 
@@ -17,9 +29,30 @@ public class Iceberg : MonoBehaviour {
     private float rightEndPosX;
     private float rightOutPosX;
 
+    private Rigidbody2D rigidbody;
+    private Vector2[] rigidbodyOffsets;
+    private Vector2[] rigidbodySizes;
+
     private void Awake() {
-        BoxCollider2D icebergCollider = GetComponent<BoxCollider2D>();
+        // BoxCollider2D icebergCollider = GetComponent<BoxCollider2D>();
+        icebergCollider = GetComponent<BoxCollider2D>();
         width = icebergCollider.size.x;
+        rigidbodyOffsets = new[] {
+            new Vector2(-35, 0),
+            new Vector2(-5, 0),
+            new Vector2(25, 0),
+            new Vector2(55, 0),
+            new Vector2(85, 0),
+            new Vector2(115, 0),
+        };
+        rigidbodySizes = new[] {
+            new Vector2(195, 760),
+            new Vector2(255, 760),
+            new Vector2(315, 760),
+            new Vector2(375, 760),
+            new Vector2(435, 760),
+            new Vector2(495, 760),
+        };
     }
 
     private void Start() {
@@ -64,7 +97,8 @@ public class Iceberg : MonoBehaviour {
         transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
         targetPosX = Random.Range(0f, rightEndPosX);
 
-        ChangeWidth();
+        // ChangeWidth();
+        Resize();
     }
 
     private void Stop(float posX) {
@@ -93,6 +127,37 @@ public class Iceberg : MonoBehaviour {
         }
 
         return false;
+    }
+
+    private void Resize() {
+        Destroy(gameObject.transform.Find("Images").gameObject);
+
+        GameObject newImages = new GameObject("Images");
+        newImages.transform.parent = gameObject.transform;
+        newImages.transform.localPosition = new Vector3(0, 0, 0);
+        newImages.transform.localScale = new Vector3(1, 1, 1);
+
+        int centerCnt = Random.Range(MIN_CENTER_CNT, MAX_CENTER_CNT);
+        left = Instantiate(leftPrefab);
+        left.transform.parent = newImages.transform;
+        left.transform.localPosition = new Vector3(-80, 0, 0);
+        left.transform.localScale = new Vector3(1, 1, 1);
+
+        centers = new GameObject[centerCnt];
+        for (int i = 0; i < centerCnt; i++) {
+            centers[i] = Instantiate(centerPrefab);
+            centers[i].transform.parent = newImages.transform;
+            centers[i].transform.localPosition = new Vector3(60 * i, 0, 0);
+            centers[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        right = Instantiate(rightPrefab);
+        right.transform.parent = newImages.transform;
+        right.transform.localPosition = new Vector3(60 * (centerCnt - 1) + 80, 0, 0);
+        right.transform.localScale = new Vector3(1, 1, 1);
+
+        icebergCollider.offset = rigidbodyOffsets[centerCnt];
+        icebergCollider.size = rigidbodySizes[centerCnt];
     }
 
     private void ChangeWidth() {
