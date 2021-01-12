@@ -97,7 +97,7 @@ public class Iceberg : MonoBehaviour {
 
     private void ChangeWidth() {
         float newWidth = Random.Range(MIN_WIDTH_SCALE, MAX_WIDTH_SCALE);
-        transform.localScale = new Vector2(newWidth, 0.4f);
+        transform.localScale = new Vector2(newWidth, 0.25f);
     }
 
     private void ChangeTag() {

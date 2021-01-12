@@ -51,7 +51,9 @@ public class Cat : MonoBehaviour {
     private Vector2 slideOffset;
     private Vector2 slideSize;
 
-    private float walkPosY;
+    private float localWalkPosY;
+
+    // private float walkPosY;
     private Vector2 walkOffset;
     private Vector2 walkSize;
 
@@ -68,24 +70,25 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        stopPosX = 45;
+        stopPosX = 40;
 
-        localStandPosY = 330;
-        standOffset = new Vector2(-1.5f, 17f);
-        standSize = new Vector2(177f, 118f);
+        localStandPosY = 415f;
+        standOffset = new Vector2(0f, 12f);
+        standSize = new Vector2(169f, 108f);
 
-        localReadyPosY = 340f;
-        readyOffset = new Vector2(0.1f, 0.5f);
-        readySize = new Vector2(194f, 135f);
+        localReadyPosY = 430f;
+        readyOffset = new Vector2(0f, 4f);
+        readySize = new Vector2(188f, 128f);
 
-        jumpOffset = new Vector2(-0.4f, 4f);
-        jumpSize = new Vector2(252f, 161f);
-        slideOffset = new Vector2(-0.2f, -0.4f);
-        slideSize = new Vector2(284f, 117f);
+        jumpOffset = new Vector2(0f, 0f);
+        jumpSize = new Vector2(256f, 144f);
 
-        walkPosY = -112f;
-        walkOffset = new Vector2(-1.3f, -0.4f);
-        walkSize = new Vector2(202f, 157f);
+        slideOffset = new Vector2(16f, 0f);
+        slideSize = new Vector2(256f, 112f);
+
+        localWalkPosY = 445f;
+        walkOffset = new Vector2(0f, 0f);
+        walkSize = new Vector2(196f, 150f);
     }
 
     private void Update() {
@@ -255,7 +258,8 @@ public class Cat : MonoBehaviour {
                 boxCollider.size = slideSize;
                 break;
             case "Walk":
-                transform.position = new Vector3(transform.position.x, walkPosY, 0);
+                // transform.position = new Vector3(transform.position.x, walkPosY, 0);
+                transform.localPosition = new Vector3(transform.position.x, localWalkPosY, 0);
                 spriteRenderer.sprite = walkSprite;
                 boxCollider.offset = walkOffset;
                 boxCollider.size = walkSize;
