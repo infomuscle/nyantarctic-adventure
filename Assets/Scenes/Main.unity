@@ -1111,6 +1111,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616130936}
     m_Modifications:
+    - target: {fileID: 9127217886628230808, guid: aeccc011744f54bd3813883d410cb218,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127217886628230808, guid: aeccc011744f54bd3813883d410cb218,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
+      objectReference: {fileID: 0}
     - target: {fileID: 9127217886628230810, guid: aeccc011744f54bd3813883d410cb218,
         type: 3}
       propertyPath: m_Name
@@ -1827,6 +1837,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: iceberg-left
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227435140552692538, guid: f40864501ad424760aefc9ea35e3fedf,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227435140552692538, guid: f40864501ad424760aefc9ea35e3fedf,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
       objectReference: {fileID: 0}
     - target: {fileID: 8227435140552692539, guid: f40864501ad424760aefc9ea35e3fedf,
         type: 3}
@@ -2973,6 +2993,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: iceberg-right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857402307617190022, guid: 240730c4a001841e0b43a15e3149219a,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857402307617190022, guid: 240730c4a001841e0b43a15e3149219a,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
       objectReference: {fileID: 0}
     - target: {fileID: 4857402307617190023, guid: 240730c4a001841e0b43a15e3149219a,
         type: 3}
@@ -4223,6 +4253,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1293379707}
     m_Modifications:
+    - target: {fileID: 9127217886628230808, guid: aeccc011744f54bd3813883d410cb218,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127217886628230808, guid: aeccc011744f54bd3813883d410cb218,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
+      objectReference: {fileID: 0}
     - target: {fileID: 9127217886628230810, guid: aeccc011744f54bd3813883d410cb218,
         type: 3}
       propertyPath: m_Name
@@ -4303,6 +4343,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: iceberg-right
       objectReference: {fileID: 0}
+    - target: {fileID: 4857402307617190022, guid: 240730c4a001841e0b43a15e3149219a,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857402307617190022, guid: 240730c4a001841e0b43a15e3149219a,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
+      objectReference: {fileID: 0}
     - target: {fileID: 4857402307617190023, guid: 240730c4a001841e0b43a15e3149219a,
         type: 3}
       propertyPath: m_RootOrder
@@ -4371,6 +4421,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: iceberg-left
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227435140552692538, guid: f40864501ad424760aefc9ea35e3fedf,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227435140552692538, guid: f40864501ad424760aefc9ea35e3fedf,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 683513517
       objectReference: {fileID: 0}
     - target: {fileID: 8227435140552692539, guid: f40864501ad424760aefc9ea35e3fedf,
         type: 3}
