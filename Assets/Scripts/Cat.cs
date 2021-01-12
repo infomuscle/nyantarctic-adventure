@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
     private const float MAX_JUMP_FORCE = 12000;
-    private const float MIN_JUMP_FORCE = 3900;
+    private const float MIN_JUMP_FORCE = 3600;
     private float jumpForce = 0;
     private float addForce = 0;
     private bool forceUp = true;
@@ -70,7 +70,7 @@ public class Cat : MonoBehaviour {
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        stopPosX = 40;
+        stopPosX = 45;
 
         localStandPosY = 415f;
         standOffset = new Vector2(0f, 12f);
@@ -206,14 +206,13 @@ public class Cat : MonoBehaviour {
             ChangeParent();
 
             stopPosX = (float) (Math.Round(transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2);
+            Debug.Log(stopPosX);
             isRepositioning = true;
             isLanding = false;
         }
     }
 
     private bool CheckEndOnIceberg(string forward) {
-        float positionX = 92f;
-
         if (forward == "Right") {
             if (transform.localPosition.x >= stopPosX) {
                 return true;
@@ -224,7 +223,6 @@ public class Cat : MonoBehaviour {
                 return true;
             }
         }
-
 
         return false;
     }
@@ -258,8 +256,7 @@ public class Cat : MonoBehaviour {
                 boxCollider.size = slideSize;
                 break;
             case "Walk":
-                // transform.position = new Vector3(transform.position.x, walkPosY, 0);
-                transform.localPosition = new Vector3(transform.position.x, localWalkPosY, 0);
+                transform.localPosition = new Vector3(transform.localPosition.x, localWalkPosY, 0);
                 spriteRenderer.sprite = walkSprite;
                 boxCollider.offset = walkOffset;
                 boxCollider.size = walkSize;
