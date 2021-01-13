@@ -23,13 +23,13 @@ public class Iceberg : MonoBehaviour {
     private float width;
     private bool isRepositioning = false;
 
-    private float targetPosX;
-    private float leftEndPosX;
-    private float leftOutPosX;
-    private float rightEndPosX;
+    private int targetPosX;
+    private int[] rightEndPosXs;
+    private int rightEndPosX;
     private float rightOutPosX;
+    private float leftOutPosX;
+    private float leftEndPosX;
 
-    private float[] rightEndPosXs;
 
     private Rigidbody2D rigidbody;
     private Vector2[] boxOffsets;
@@ -56,13 +56,12 @@ public class Iceberg : MonoBehaviour {
         };
 
         // 195-163 | 255-148 | 315-133 | 375-118 | 435-103
-        rightEndPosXs = new float[] {163, 148, 133, 118, 103};
+        rightEndPosXs = new[] {163, 148, 133, 118, 103};
     }
 
     private void Start() {
         leftEndPosX = -180f + (width * transform.localScale.x / 2);
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
-        rightEndPosX = 180f - (width * transform.localScale.x / 2);
         rightOutPosX = 180f + (width * transform.localScale.x / 2);
         if (tag == "TargetIceberg") {
             Resize();
@@ -100,11 +99,10 @@ public class Iceberg : MonoBehaviour {
     }
 
     private void Repositon() {
+        Resize();
         isRepositioning = true;
         transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
-        targetPosX = Random.Range(0f, rightEndPosX);
-
-        Resize();
+        targetPosX = Random.Range(0, rightEndPosX);
     }
 
     private void Stop(float posX) {
@@ -164,6 +162,9 @@ public class Iceberg : MonoBehaviour {
 
         icebergCollider.offset = boxOffsets[centerCnt];
         icebergCollider.size = boxSizes[centerCnt];
+
+
+        rightEndPosX = rightEndPosXs[centerCnt];
     }
 
     private void ChangeTag() {
