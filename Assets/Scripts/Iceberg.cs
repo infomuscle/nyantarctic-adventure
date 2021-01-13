@@ -135,27 +135,27 @@ public class Iceberg : MonoBehaviour {
 
         GameObject newImages = new GameObject("Images");
         newImages.transform.parent = gameObject.transform;
-        newImages.transform.localPosition = new Vector3(0, 0, 0);
-        newImages.transform.localScale = new Vector3(1, 1, 1);
+        newImages.transform.localPosition = Vector3.zero;
+        newImages.transform.localScale = Vector3.one;
 
         int centerCnt = Random.Range(MIN_CENTER_CNT, MAX_CENTER_CNT);
         left = Instantiate(leftPrefab);
         left.transform.parent = newImages.transform;
         left.transform.localPosition = new Vector3(-80, 0, 0);
-        left.transform.localScale = new Vector3(1, 1, 1);
+        left.transform.localScale = Vector3.one;
 
         centers = new GameObject[centerCnt];
         for (int i = 0; i < centerCnt; i++) {
             centers[i] = Instantiate(centerPrefab);
             centers[i].transform.parent = newImages.transform;
             centers[i].transform.localPosition = new Vector3(60 * i, 0, 0);
-            centers[i].transform.localScale = new Vector3(1, 1, 1);
+            centers[i].transform.localScale = Vector3.one;
         }
 
         right = Instantiate(rightPrefab);
         right.transform.parent = newImages.transform;
         right.transform.localPosition = new Vector3(60 * (centerCnt - 1) + 80, 0, 0);
-        right.transform.localScale = new Vector3(1, 1, 1);
+        right.transform.localScale = Vector3.one;
 
         icebergCollider.offset = rigidbodyOffsets[centerCnt];
         icebergCollider.size = rigidbodySizes[centerCnt];
