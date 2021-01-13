@@ -3,10 +3,9 @@
 public class Iceberg : MonoBehaviour {
     private const float DEFAULT_POS_Y = -230f;
     private const float SPEED = 1000f;
-    private const float MIN_WIDTH_SCALE = 0.2f;
-    private const float MAX_WIDTH_SCALE = 0.6f;
     private const int MAX_CENTER_CNT = 5;
     private const int MIN_CENTER_CNT = 0;
+    private const int RIGHT_OUT_POS_X = 216;
 
     public GameObject centerPrefab;
     public GameObject leftPrefab;
@@ -26,7 +25,6 @@ public class Iceberg : MonoBehaviour {
     private int targetPosX;
     private int[] rightEndPosXs;
     private int rightEndPosX;
-    private float rightOutPosX;
     private float leftOutPosX;
     private float leftEndPosX;
 
@@ -62,7 +60,6 @@ public class Iceberg : MonoBehaviour {
     private void Start() {
         leftEndPosX = -180f + (width * transform.localScale.x / 2);
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
-        rightOutPosX = 180f + (width * transform.localScale.x / 2);
         if (tag == "TargetIceberg") {
             Resize();
         }
@@ -100,8 +97,9 @@ public class Iceberg : MonoBehaviour {
 
     private void Repositon() {
         Resize();
+        Debug.Log(RIGHT_OUT_POS_X);
         isRepositioning = true;
-        transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
+        transform.position = new Vector2(RIGHT_OUT_POS_X, DEFAULT_POS_Y);
         targetPosX = Random.Range(0, rightEndPosX);
     }
 
