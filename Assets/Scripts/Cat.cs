@@ -57,6 +57,8 @@ public class Cat : MonoBehaviour {
     private Vector2 walkOffset;
     private Vector2 walkSize;
 
+    private Iceberg target;
+
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -208,7 +210,7 @@ public class Cat : MonoBehaviour {
             ChangeParent();
 
 
-            Iceberg target = other.gameObject.GetComponent<Iceberg>();
+            target = other.gameObject.GetComponent<Iceberg>();
 
             stopPosX = stopPosXs[target.centers.Length];
             isRepositioning = true;
