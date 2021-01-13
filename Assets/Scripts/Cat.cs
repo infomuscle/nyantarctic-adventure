@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Cat : MonoBehaviour {
     private const float FORCE_MAGNITUDE = 500;
@@ -36,6 +35,7 @@ public class Cat : MonoBehaviour {
     public Sprite walkSprite;
 
 
+    private float[] stopPosXs;
     private float stopPosX;
 
     private float localStandPosY;
@@ -48,12 +48,11 @@ public class Cat : MonoBehaviour {
 
     private Vector2 jumpOffset;
     private Vector2 jumpSize;
+
     private Vector2 slideOffset;
     private Vector2 slideSize;
 
     private float localWalkPosY;
-
-    // private float walkPosY;
     private Vector2 walkOffset;
     private Vector2 walkSize;
 
@@ -69,8 +68,6 @@ public class Cat : MonoBehaviour {
 
         catAudio = GetComponent<AudioSource>();
         catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
-
-        stopPosX = 45;
 
         localStandPosY = 415f;
         standOffset = new Vector2(0f, 12f);
@@ -89,6 +86,8 @@ public class Cat : MonoBehaviour {
         localWalkPosY = 445f;
         walkOffset = new Vector2(0f, 0f);
         walkSize = new Vector2(196f, 150f);
+
+        stopPosXs = new float[] {-32, 32, 92, 152, 212, 272};
     }
 
     private void Update() {
@@ -205,7 +204,10 @@ public class Cat : MonoBehaviour {
         if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
             ChangeParent();
 
-            stopPosX = (float) (Math.Round(transform.parent.GetComponent<BoxCollider2D>().size.x * transform.parent.localScale.x) / 2);
+
+            Iceberg target = other.gameObject.GetComponent<Iceberg>();
+
+            stopPosX = stopPosXs[target.centers.Length];
             isRepositioning = true;
             isLanding = false;
         }

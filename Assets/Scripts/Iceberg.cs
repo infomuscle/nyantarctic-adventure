@@ -13,7 +13,7 @@ public class Iceberg : MonoBehaviour {
     public GameObject rightPrefab;
 
     private GameObject left;
-    private GameObject[] centers;
+    public GameObject[] centers;
     private GameObject right;
 
     private BoxCollider2D icebergCollider;
@@ -34,7 +34,6 @@ public class Iceberg : MonoBehaviour {
     private Vector2[] rigidbodySizes;
 
     private void Awake() {
-        // BoxCollider2D icebergCollider = GetComponent<BoxCollider2D>();
         icebergCollider = GetComponent<BoxCollider2D>();
         width = icebergCollider.size.x;
         rigidbodyOffsets = new[] {
@@ -60,6 +59,9 @@ public class Iceberg : MonoBehaviour {
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
         rightEndPosX = 180f - (width * transform.localScale.x / 2);
         rightOutPosX = 180f + (width * transform.localScale.x / 2);
+        if (tag == "TargetIceberg") {
+            Resize();
+        }
     }
 
     private void Update() {
@@ -97,7 +99,6 @@ public class Iceberg : MonoBehaviour {
         transform.position = new Vector2(rightOutPosX, DEFAULT_POS_Y);
         targetPosX = Random.Range(0f, rightEndPosX);
 
-        // ChangeWidth();
         Resize();
     }
 
@@ -158,11 +159,6 @@ public class Iceberg : MonoBehaviour {
 
         icebergCollider.offset = rigidbodyOffsets[centerCnt];
         icebergCollider.size = rigidbodySizes[centerCnt];
-    }
-
-    private void ChangeWidth() {
-        float newWidth = Random.Range(MIN_WIDTH_SCALE, MAX_WIDTH_SCALE);
-        transform.localScale = new Vector2(newWidth, 0.25f);
     }
 
     private void ChangeTag() {
