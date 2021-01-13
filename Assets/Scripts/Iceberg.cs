@@ -30,13 +30,13 @@ public class Iceberg : MonoBehaviour {
     private float rightOutPosX;
 
     private Rigidbody2D rigidbody;
-    private Vector2[] rigidbodyOffsets;
-    private Vector2[] rigidbodySizes;
+    private Vector2[] boxOffsets;
+    private Vector2[] boxSizes;
 
     private void Awake() {
         icebergCollider = GetComponent<BoxCollider2D>();
         width = icebergCollider.size.x;
-        rigidbodyOffsets = new[] {
+        boxOffsets = new[] {
             new Vector2(-35, 0),
             new Vector2(-5, 0),
             new Vector2(25, 0),
@@ -44,7 +44,7 @@ public class Iceberg : MonoBehaviour {
             new Vector2(85, 0),
             new Vector2(115, 0),
         };
-        rigidbodySizes = new[] {
+        boxSizes = new[] {
             new Vector2(195, 760),
             new Vector2(255, 760),
             new Vector2(315, 760),
@@ -157,8 +157,8 @@ public class Iceberg : MonoBehaviour {
         right.transform.localPosition = new Vector3(60 * (centerCnt - 1) + 80, 0, 0);
         right.transform.localScale = Vector3.one;
 
-        icebergCollider.offset = rigidbodyOffsets[centerCnt];
-        icebergCollider.size = rigidbodySizes[centerCnt];
+        icebergCollider.offset = boxOffsets[centerCnt];
+        icebergCollider.size = boxSizes[centerCnt];
     }
 
     private void ChangeTag() {
