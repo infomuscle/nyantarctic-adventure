@@ -29,6 +29,8 @@ public class Iceberg : MonoBehaviour {
     private float rightEndPosX;
     private float rightOutPosX;
 
+    private float[] rightEndPosXs;
+
     private Rigidbody2D rigidbody;
     private Vector2[] boxOffsets;
     private Vector2[] boxSizes;
@@ -52,6 +54,9 @@ public class Iceberg : MonoBehaviour {
             new Vector2(435, 760),
             new Vector2(495, 760),
         };
+
+        // 195-163 | 255-148 | 315-133 | 375-118 | 435-103
+        rightEndPosXs = new float[] {163, 148, 133, 118, 103};
     }
 
     private void Start() {
