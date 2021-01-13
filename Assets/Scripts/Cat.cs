@@ -46,6 +46,7 @@ public class Cat : MonoBehaviour {
     private Vector2 readyOffset;
     private Vector2 readySize;
 
+    private float localJumpPosY;
     private Vector2 jumpOffset;
     private Vector2 jumpSize;
 
@@ -77,6 +78,8 @@ public class Cat : MonoBehaviour {
         readyOffset = new Vector2(0f, 4f);
         readySize = new Vector2(188f, 128f);
 
+        // localJumpPosY = 445f;
+        localJumpPosY = 437.5f;
         jumpOffset = new Vector2(0f, 0f);
         jumpSize = new Vector2(256f, 144f);
 
@@ -247,6 +250,7 @@ public class Cat : MonoBehaviour {
                 boxCollider.size = readySize;
                 break;
             case "Jump":
+                transform.localPosition = new Vector2(stopPosX, localJumpPosY);
                 spriteRenderer.sprite = jumpSprite;
                 boxCollider.offset = jumpOffset;
                 boxCollider.size = jumpSize;
