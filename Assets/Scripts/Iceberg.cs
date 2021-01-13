@@ -163,7 +163,6 @@ public class Iceberg : MonoBehaviour {
         icebergCollider.offset = boxOffsets[centerCnt];
         icebergCollider.size = boxSizes[centerCnt];
 
-
         rightEndPosX = rightEndPosXs[centerCnt];
     }
 
