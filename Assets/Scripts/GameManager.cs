@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour {
     private int step = 0;
     private Iceberg[] icebergs;
     private Background[] backgrounds;
-    private Fish fish;
+
+    private GameObject fish;
+    public GameObject fishPrefab;
 
 
     private void Awake() {
@@ -31,8 +33,6 @@ public class GameManager : MonoBehaviour {
         icebergs = new Iceberg[2];
         icebergs[0] = GameObject.FindWithTag("StandIceberg").GetComponent<Iceberg>();
         icebergs[1] = GameObject.FindWithTag("TargetIceberg").GetComponent<Iceberg>();
-
-        fish = GameObject.FindWithTag("Fish").GetComponent<Fish>();
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
         fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
@@ -79,9 +79,13 @@ public class GameManager : MonoBehaviour {
     }
 
     private void MoveFish() {
-        fish.gameObject.SetActive(false);
-        fish.gameObject.SetActive(true);
-        fish.Reposition(0, 10);
+        fish = GameObject.Find("Fish");
+        if (fish) {
+            Destroy(fish);
+        }
+
+        // Debug.Log("Fish??");
+        // fish = Instantiate(fishPrefab);
     }
 
     public void OnPlayerDead() {

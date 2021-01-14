@@ -13,6 +13,9 @@ public class Fish : MonoBehaviour, IItem {
     public void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
+        
+        Reposition(-10, 50);
+        
         repeat = Random.Range(2f, 5f);
         Debug.Log(repeat);
         StartCoroutine(Jump(repeat));
