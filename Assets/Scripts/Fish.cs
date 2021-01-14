@@ -8,18 +8,14 @@ public class Fish : MonoBehaviour, IItem {
     private Rigidbody2D rigidbody;
 
     private float posX;
-
-    private IEnumerator jumpEnumerator;
-
-    public void Awake() {
-        jumpEnumerator = Jump(3);
-        rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.isKinematic = true;
-        StopCoroutine(jumpEnumerator);
-        StartCoroutine(jumpEnumerator);
-    }
+    private float repeat;
 
     public void Start() {
+        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.isKinematic = true;
+        repeat = Random.Range(2f, 5f);
+        Debug.Log(repeat);
+        StartCoroutine(Jump(repeat));
     }
 
     public void Update() {
@@ -37,7 +33,7 @@ public class Fish : MonoBehaviour, IItem {
         rigidbody.isKinematic = false;
         rigidbody.AddForce(new Vector2(0, JUMP_FORCE));
         yield return new WaitForSeconds(delay);
-        StartCoroutine(Jump(3));
+        StartCoroutine(Jump(delay));
     }
 
     public void Reposition(float posXleft, float posXRight) {

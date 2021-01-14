@@ -97,7 +97,6 @@ public class Iceberg : MonoBehaviour {
 
     private void Repositon() {
         Resize();
-        Debug.Log(RIGHT_OUT_POS_X);
         isRepositioning = true;
         transform.position = new Vector2(RIGHT_OUT_POS_X, DEFAULT_POS_Y);
         targetPosX = Random.Range(0, rightEndPosX);
