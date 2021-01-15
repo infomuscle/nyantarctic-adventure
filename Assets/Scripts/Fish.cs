@@ -3,19 +3,24 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour, IItem {
     private const float DEFAULT_POS_Y = -350f;
-    private const float JUMP_FORCE = 50000f;
+    // private const float JUMP_FORCE = 50000f;
 
     private Rigidbody2D rigidbody;
 
+    private int jumpForce;
+    private bool appear;
     private float posX;
-    private float repeat;
+    private float delay;
 
     public void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
 
-        repeat = Random.Range(2f, 5f);
-        StartCoroutine(Jump(repeat));
+        appear = Random.Range(0, 3) == 0;
+        jumpForce = appear ? 50000 : 0;
+
+        delay = Random.Range(2f, 5f);
+        StartCoroutine(Jump(delay));
     }
 
     public void Update() {
@@ -29,11 +34,11 @@ public class Fish : MonoBehaviour, IItem {
     public void Use() {
     }
 
-    IEnumerator Jump(float delay) {
+    IEnumerator Jump(float time) {
         rigidbody.isKinematic = false;
-        rigidbody.AddForce(new Vector2(0, JUMP_FORCE));
-        yield return new WaitForSeconds(delay);
-        StartCoroutine(Jump(delay));
+        rigidbody.AddForce(new Vector2(0, jumpForce));
+        yield return new WaitForSeconds(time);
+        StartCoroutine(Jump(time));
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
