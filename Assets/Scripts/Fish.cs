@@ -13,11 +13,8 @@ public class Fish : MonoBehaviour, IItem {
     public void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
-        
-        Reposition(-10, 50);
-        
+
         repeat = Random.Range(2f, 5f);
-        Debug.Log(repeat);
         StartCoroutine(Jump(repeat));
     }
 
@@ -39,17 +36,10 @@ public class Fish : MonoBehaviour, IItem {
         StartCoroutine(Jump(delay));
     }
 
-    public void Reposition(float posXleft, float posXRight) {
-        gameObject.SetActive(true);
-        float newPosX = Random.Range(posXleft, posXRight);
-        transform.position = new Vector2(newPosX, DEFAULT_POS_Y);
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            Debug.Log("FISH!");
             GameManager.instance.AddFish(1);
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

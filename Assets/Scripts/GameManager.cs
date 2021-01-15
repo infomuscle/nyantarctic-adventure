@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
         fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
+
+        SetFish();
     }
 
     public void AddScore(int newScore) {
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour {
         if (score > step) {
             MoveBacgkrounds();
             MoveIceberg();
-            MoveFish();
+            SetFish();
             step++;
         }
     }
@@ -78,14 +80,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void MoveFish() {
-        fish = GameObject.Find("Fish");
+    private void SetFish() {
+        fish = GameObject.Find("Fish(Clone)");
         if (fish) {
             Destroy(fish);
         }
 
-        // Debug.Log("Fish??");
-        // fish = Instantiate(fishPrefab);
+        float fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2;
+        fish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));
     }
 
     public void OnPlayerDead() {
