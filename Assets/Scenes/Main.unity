@@ -1129,6 +1129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: iceberg-center
       objectReference: {fileID: 0}
+    - target: {fileID: 9127217886628230810, guid: aeccc011744f54bd3813883d410cb218,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9127217886628230811, guid: aeccc011744f54bd3813883d410cb218,
         type: 3}
       propertyPath: m_RootOrder

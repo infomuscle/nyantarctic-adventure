@@ -30,7 +30,8 @@ public class Iceberg : MonoBehaviour {
     private int rightEndPosX;
     private int[] leftEndPosXs;
     private int leftEndPosX;
-    private float leftOutPosX;
+    private int[] leftOutPosXs;
+    private int leftOutPosX;
 
     private void Awake() {
         icebergCollider = GetComponent<BoxCollider2D>();
@@ -53,11 +54,12 @@ public class Iceberg : MonoBehaviour {
         // 195-163 | 255-148 | 315-133 | 375-118 | 435-103
         rightEndPosXs = new[] {163, 148, 133, 118, 103};
         leftEndPosXs = new[] {-130, -145, -160, -175, -190};
+        leftOutPosXs = new[] {-197, -212, -227, -242, -257};
     }
 
     private void Start() {
         leftEndPosX = leftEndPosXs[1];
-        leftOutPosX = -180f - (width * transform.localScale.x / 2);
+        leftOutPosX = leftOutPosXs[1];
         if (tag == "TargetIceberg") {
             Resize();
         }
@@ -160,6 +162,7 @@ public class Iceberg : MonoBehaviour {
 
         rightEndPosX = rightEndPosXs[centerCnt];
         leftEndPosX = leftEndPosXs[centerCnt];
+        leftOutPosX = leftOutPosXs[centerCnt];
     }
 
     private void ChangeTag() {
