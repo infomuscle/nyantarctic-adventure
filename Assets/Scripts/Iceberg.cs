@@ -6,59 +6,57 @@ public class Iceberg : MonoBehaviour {
     private const int MAX_CENTER_CNT = 5;
     private const int MIN_CENTER_CNT = 0;
     private const int RIGHT_OUT_POS_X = 216;
+    private const int DEFAULT_BOX_SIZE_Y = 760;
+    private const int DEFAULT_BOX_OFFSET_Y = 0;
 
     public GameObject centerPrefab;
     public GameObject leftPrefab;
     public GameObject rightPrefab;
-
-    private GameObject left;
     public GameObject[] centers;
+    private GameObject left;
     private GameObject right;
 
     private BoxCollider2D icebergCollider;
+    private Rigidbody2D rigidbody;
+    private Vector2[] boxOffsets;
+    private Vector2[] boxSizes;
 
     public bool isMove = false;
-
-    private float width;
     private bool isRepositioning = false;
+    private float width;
 
     private int targetPosX;
     private int[] rightEndPosXs;
     private int rightEndPosX;
+    private int[] leftEndPosXs;
+    private int leftEndPosX;
     private float leftOutPosX;
-    private float leftEndPosX;
-
-
-    private Rigidbody2D rigidbody;
-    private Vector2[] boxOffsets;
-    private Vector2[] boxSizes;
 
     private void Awake() {
         icebergCollider = GetComponent<BoxCollider2D>();
         width = icebergCollider.size.x;
         boxOffsets = new[] {
-            new Vector2(-35, 0),
-            new Vector2(-5, 0),
-            new Vector2(25, 0),
-            new Vector2(55, 0),
-            new Vector2(85, 0),
-            new Vector2(115, 0),
+            new Vector2(-35, DEFAULT_BOX_OFFSET_Y),
+            new Vector2(-5, DEFAULT_BOX_OFFSET_Y),
+            new Vector2(25, DEFAULT_BOX_OFFSET_Y),
+            new Vector2(55, DEFAULT_BOX_OFFSET_Y),
+            new Vector2(85, DEFAULT_BOX_OFFSET_Y),
         };
         boxSizes = new[] {
-            new Vector2(195, 760),
-            new Vector2(255, 760),
-            new Vector2(315, 760),
-            new Vector2(375, 760),
-            new Vector2(435, 760),
-            new Vector2(495, 760),
+            new Vector2(195, DEFAULT_BOX_SIZE_Y),
+            new Vector2(255, DEFAULT_BOX_SIZE_Y),
+            new Vector2(315, DEFAULT_BOX_SIZE_Y),
+            new Vector2(375, DEFAULT_BOX_SIZE_Y),
+            new Vector2(435, DEFAULT_BOX_SIZE_Y),
         };
 
         // 195-163 | 255-148 | 315-133 | 375-118 | 435-103
         rightEndPosXs = new[] {163, 148, 133, 118, 103};
+        leftEndPosXs = new[] {-130, -145, -160, -175, -190};
     }
 
     private void Start() {
-        leftEndPosX = -145f;
+        leftEndPosX = leftEndPosXs[1];
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
         if (tag == "TargetIceberg") {
             Resize();
@@ -161,7 +159,7 @@ public class Iceberg : MonoBehaviour {
         icebergCollider.size = boxSizes[centerCnt];
 
         rightEndPosX = rightEndPosXs[centerCnt];
-        leftEndPosX = -145f - 15 * (centerCnt - 1);
+        leftEndPosX = leftEndPosXs[centerCnt];
     }
 
     private void ChangeTag() {
