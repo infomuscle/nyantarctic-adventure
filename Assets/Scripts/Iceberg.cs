@@ -58,7 +58,7 @@ public class Iceberg : MonoBehaviour {
     }
 
     private void Start() {
-        leftEndPosX = -180f + (width * transform.localScale.x / 2);
+        leftEndPosX = -145f;
         leftOutPosX = -180f - (width * transform.localScale.x / 2);
         if (tag == "TargetIceberg") {
             Resize();
@@ -161,6 +161,7 @@ public class Iceberg : MonoBehaviour {
         icebergCollider.size = boxSizes[centerCnt];
 
         rightEndPosX = rightEndPosXs[centerCnt];
+        leftEndPosX = -145f - 15 * (centerCnt - 1);
     }
 
     private void ChangeTag() {
