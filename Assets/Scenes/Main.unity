@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b1f1c4fdb814b6f999aa9af1aeefe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 8300000, guid: 0dc3e857d65ca3942bde4d09e5a561b7, type: 3}
+  jumpClip: {fileID: 8300000, guid: 04fd4b21d35f02644b4b534cb873272c, type: 3}
   deathClip: {fileID: 8300000, guid: ad725dcd9806ce94ca28997a3f393a3e, type: 3}
   readySprite: {fileID: 21300000, guid: 9e5619a5fedbe403f8e0513cb35c7fd3, type: 3}
   standSprite: {fileID: 21300000, guid: bf12911bbdd39442688982e741aea990, type: 3}

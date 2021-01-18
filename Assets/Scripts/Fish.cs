@@ -7,6 +7,9 @@ public class Fish : MonoBehaviour, IItem {
 
     private Rigidbody2D rigidbody;
 
+    private AudioSource fishAudio;
+    public AudioClip eatClip;
+
     private int jumpForce;
     private bool appear;
     private float posX;
@@ -15,6 +18,9 @@ public class Fish : MonoBehaviour, IItem {
     public void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
+
+        fishAudio = GetComponent<AudioSource>();
+        // fishAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
         appear = Random.Range(0, 3) == 0;
         jumpForce = appear ? 50000 : 0;
@@ -43,6 +49,9 @@ public class Fish : MonoBehaviour, IItem {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
+            fishAudio.clip = eatClip;
+            fishAudio.Play();
+
             GameManager.instance.AddFish(1);
             Destroy(gameObject);
         }

@@ -126,6 +126,7 @@ public class Cat : MonoBehaviour {
 
             if (Input.GetMouseButtonUp(0)) {
                 ChangeSprite("Jump");
+                // jump_11
                 catAudio.clip = jumpClip;
                 catAudio.Play();
 
