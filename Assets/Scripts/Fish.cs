@@ -45,7 +45,7 @@ public class Fish : MonoBehaviour, IItem {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            GameManager.instance.EatFish();
+            GameManager.instance.GetFish();
             Destroy(gameObject);
         }
     }

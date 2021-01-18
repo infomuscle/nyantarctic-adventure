@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour {
     private GameObject fish;
     public GameObject fishPrefab;
 
-    private AudioSource fishAudio;
-    public AudioClip eatClip;
+    private AudioSource gameAudio;
+    public AudioClip fishClip;
+    public AudioClip btnClip;
 
 
     private void Awake() {
@@ -40,8 +41,8 @@ public class GameManager : MonoBehaviour {
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
         fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
         
-        fishAudio = GetComponent<AudioSource>();
-        fishAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
+        gameAudio = GetComponent<AudioSource>();
+        gameAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
         SetFish();
     }
@@ -123,9 +124,13 @@ public class GameManager : MonoBehaviour {
         bestScoreText.text = "Best: " + PlayerPrefs.GetInt("Best");
     }
 
-    public void EatFish() {
-        fishAudio.clip = eatClip;
-        fishAudio.Play();
+    public void GetFish() {
+        gameAudio.clip = fishClip;
+        gameAudio.Play();
         AddFish(1);
     }
+    
+    // public void PlayButtonSound() {
+        // gameAudio.clip = btnClip;
+    // }
 }
