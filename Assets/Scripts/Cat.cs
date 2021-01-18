@@ -126,7 +126,10 @@ public class Cat : MonoBehaviour {
 
             if (Input.GetMouseButtonUp(0)) {
                 ChangeSprite("Jump");
-                // jump_11
+                // Frisk_10
+                // Frisk_11
+                // Frisk_01
+                // TODO 길이에 따른 구간 설정(Short-Long) + 각 구간 내 베이스 및 랜덤 리스트 
                 catAudio.clip = jumpClip;
                 catAudio.Play();
 
