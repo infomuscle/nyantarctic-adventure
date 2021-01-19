@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour, IItem {
     private const float DEFAULT_POS_Y = -350f;
-    // private const float JUMP_FORCE = 50000f;
+    private const int JUMP_FORCE = 50000;
 
     private Rigidbody2D rigidbody;
 
@@ -17,11 +17,11 @@ public class Fish : MonoBehaviour, IItem {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
 
-        // appear = Random.Range(0, 3) == 0;
-        // jumpForce = appear ? 50000 : 0;
+        // jumpForce = Random.Range(0, 3) == 0 ? JUMP_FORCE : 0;
         jumpForce = 50000;
 
-        delay = Random.Range(2f, 5f);
+        // delay = Random.Range(2f, 5f);
+        delay = 2f;
         StartCoroutine(Jump(delay));
     }
 
@@ -37,9 +37,9 @@ public class Fish : MonoBehaviour, IItem {
     }
 
     IEnumerator Jump(float time) {
+        yield return new WaitForSeconds(time);
         rigidbody.isKinematic = false;
         rigidbody.AddForce(new Vector2(0, jumpForce));
-        yield return new WaitForSeconds(time);
         StartCoroutine(Jump(time));
     }
 
