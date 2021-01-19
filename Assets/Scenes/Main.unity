@@ -881,6 +881,8 @@ MonoBehaviour:
     type: 3}
   centers: []
   isMove: 0
+  targetPosX: 0
+  leftEndPosX: 0
 --- !u!61 &282324658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4254,6 +4256,8 @@ MonoBehaviour:
     type: 3}
   centers: []
   isMove: 0
+  targetPosX: 0
+  leftEndPosX: 0
 --- !u!61 &2063884636
 BoxCollider2D:
   m_ObjectHideFlags: 0
