@@ -4,6 +4,7 @@ public class SoundManager : MonoBehaviour {
     public static SoundManager instance;
 
     private AudioSource audioSource;
+    public AudioClip btnClip;
 
     private void Awake() {
         if (instance == null) {
@@ -25,6 +26,11 @@ public class SoundManager : MonoBehaviour {
 
     public void PlaySound(AudioClip clip) {
         audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    public void PlayButtonSound() {
+        audioSource.clip = btnClip;
         audioSource.Play();
     }
 }
