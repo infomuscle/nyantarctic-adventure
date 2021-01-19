@@ -21,9 +21,7 @@ public class GameManager : MonoBehaviour {
     private GameObject fish;
     private float fishPosX;
 
-    private AudioSource gameAudio;
     public AudioClip fishClip;
-    public AudioClip btnClip;
 
 
     private void Awake() {
@@ -43,9 +41,6 @@ public class GameManager : MonoBehaviour {
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
         fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
-
-        gameAudio = GetComponent<AudioSource>();
-        gameAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
         ResetFish();
     }
@@ -73,7 +68,6 @@ public class GameManager : MonoBehaviour {
         if (score > step) {
             MoveBacgkrounds();
             MoveIceberg();
-            // SetFish();
             step++;
         }
     }
@@ -128,12 +122,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GetFish() {
-        gameAudio.clip = fishClip;
-        gameAudio.Play();
+        SoundManager.instance.PlaySound(fishClip);
         AddFish(1);
     }
-
-    // public void PlayButtonSound() {
-    // gameAudio.clip = btnClip;
-    // }
 }

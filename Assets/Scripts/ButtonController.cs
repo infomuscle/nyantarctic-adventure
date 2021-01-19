@@ -5,14 +5,8 @@ public class ButtonController : MonoBehaviour {
     public GameObject settingsUI;
     public GameObject storeUI;
 
-    private AudioSource btnAudio;
+    // private AudioSource btnAudio;
     private AudioClip btnClip;
-
-    public void Start() {
-        btnAudio = GetComponent<AudioSource>();
-        btnAudio.clip = (AudioClip) Resources.Load("Click_Electronic_01_btn", typeof(AudioClip));
-        // btnClip = (AudioClip) Resources.Load("Click_Electronic_01_btn", typeof(AudioClip));
-    }
 
     // For Common
     public void TouchButtonPlay() {
@@ -51,7 +45,6 @@ public class ButtonController : MonoBehaviour {
 
     public void TouchButtonRank() {
         Debug.Log("TouchButtonRank!");
-        btnAudio.Play();
     }
 
 

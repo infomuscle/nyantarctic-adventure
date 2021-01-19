@@ -1193,8 +1193,7 @@ MonoBehaviour:
   isGameOver: 0
   fishPrefab: {fileID: 5712629194996361828, guid: 8a341758b0b7e403fbdb41446628bd91,
     type: 3}
-  fishClip: {fileID: 0}
-  btnClip: {fileID: 0}
+  fishClip: {fileID: 8300000, guid: 16f6ba62752f6f340a663ecd14475490, type: 3}
 --- !u!4 &408054708
 Transform:
   m_ObjectHideFlags: 0
