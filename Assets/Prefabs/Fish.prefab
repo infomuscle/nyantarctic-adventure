@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095e1f3575136413aad2e1cd9ae9184e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatClip: {fileID: 8300000, guid: 16f6ba62752f6f340a663ecd14475490, type: 3}
 --- !u!82 &1106363038464947199
 AudioSource:
   m_ObjectHideFlags: 0

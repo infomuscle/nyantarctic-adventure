@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour {
     private int score = 0;
     private int step = 0;
     private Iceberg[] icebergs;
+
+
     private Background[] backgrounds;
 
-    private GameObject fish;
     public GameObject fishPrefab;
+    private GameObject fish;
+    private float fishPosX;
 
     private AudioSource gameAudio;
     public AudioClip fishClip;
@@ -40,11 +43,11 @@ public class GameManager : MonoBehaviour {
 
         backgrounds = GameObject.Find("Backgrounds").GetComponentsInChildren<Background>();
         fishScoreText.text = PlayerPrefs.GetInt("fish", 0).ToString();
-        
+
         gameAudio = GetComponent<AudioSource>();
         gameAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
 
-        SetFish();
+        ResetFish();
     }
 
     public void AddScore(int newScore) {
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour {
         if (score > step) {
             MoveBacgkrounds();
             MoveIceberg();
-            SetFish();
+            // SetFish();
             step++;
         }
     }
@@ -87,13 +90,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void SetFish() {
+    public void ResetFish() {
         fish = GameObject.Find("Fish(Clone)");
         if (fish) {
             Destroy(fish);
         }
 
-        float fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2;
+        fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2 + 10;
         fish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));
     }
 
@@ -129,8 +132,8 @@ public class GameManager : MonoBehaviour {
         gameAudio.Play();
         AddFish(1);
     }
-    
+
     // public void PlayButtonSound() {
-        // gameAudio.clip = btnClip;
+    // gameAudio.clip = btnClip;
     // }
 }

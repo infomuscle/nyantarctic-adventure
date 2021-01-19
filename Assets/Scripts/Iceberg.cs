@@ -25,11 +25,11 @@ public class Iceberg : MonoBehaviour {
     private bool isRepositioning = false;
     private float width;
 
-    private int targetPosX;
+    public int targetPosX;
     private int[] rightEndPosXs;
     private int rightEndPosX;
     private int[] leftEndPosXs;
-    private int leftEndPosX;
+    public int leftEndPosX;
     private int[] leftOutPosXs;
     private int leftOutPosX;
 
@@ -107,6 +107,7 @@ public class Iceberg : MonoBehaviour {
         transform.position = new Vector2(posX, DEFAULT_POS_Y);
 
         ChangeTag();
+        GameManager.instance.ResetFish();
     }
 
     private bool CheckPositionOfScreen(string position) {
