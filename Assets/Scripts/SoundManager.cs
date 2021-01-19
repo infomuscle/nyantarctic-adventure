@@ -19,6 +19,8 @@ public class SoundManager : MonoBehaviour {
 
     public void Start() {
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefs.GetInt("sfxOn", 1);
+
     }
 
     public void PlaySound(AudioClip clip) {

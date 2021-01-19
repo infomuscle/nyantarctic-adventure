@@ -20,7 +20,6 @@ public class Cat : MonoBehaviour {
     private BoxCollider2D boxCollider;
 
     private Animator animator;
-    private AudioSource catAudio;
     public AudioClip jumpClip;
     public AudioClip deathClip;
 
@@ -69,9 +68,6 @@ public class Cat : MonoBehaviour {
         animator = GetComponent<Animator>();
         animator.enabled = false;
 
-        catAudio = GetComponent<AudioSource>();
-        catAudio.volume = PlayerPrefs.GetInt("sfxOn", 1);
-
         localStandPosY = 415f;
         standOffset = new Vector2(0f, 12f);
         standSize = new Vector2(169f, 108f);
@@ -80,7 +76,6 @@ public class Cat : MonoBehaviour {
         readyOffset = new Vector2(0f, 4f);
         readySize = new Vector2(188f, 128f);
 
-        // localJumpPosY = 445f;
         localJumpPosY = 437.5f;
         jumpOffset = new Vector2(0f, 0f);
         jumpSize = new Vector2(256f, 144f);
@@ -130,8 +125,7 @@ public class Cat : MonoBehaviour {
                 // Frisk_11
                 // Frisk_01
                 // TODO 길이에 따른 구간 설정(Short-Long) + 각 구간 내 베이스 및 랜덤 리스트 
-                catAudio.clip = jumpClip;
-                catAudio.Play();
+                SoundManager.instance.PlaySound(jumpClip);
 
                 isJumping = true;
                 rigidbody.isKinematic = false;
@@ -188,8 +182,7 @@ public class Cat : MonoBehaviour {
 
     private void Die() {
         Debug.Log("Die!");
-        catAudio.clip = deathClip;
-        catAudio.Play();
+        SoundManager.instance.PlaySound(deathClip);
         GameManager.instance.OnPlayerDead();
     }
 
