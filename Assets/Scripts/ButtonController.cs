@@ -2,8 +2,9 @@
 using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
-    public GameObject settingsUI;
+    public GameObject charactersUI;
     public GameObject storeUI;
+    public GameObject settingsUI;
 
     private AudioClip btnClip;
 
@@ -16,6 +17,12 @@ public class ButtonController : MonoBehaviour {
 
 
     // For Main
+    public void TouchButtonCharacter() {
+        Debug.Log("TouchButtonStore!");
+        SoundManager.instance.PlayButtonSound();
+        charactersUI.SetActive(true);
+    }
+
     public void TouchButtonStore() {
         Debug.Log("TouchButtonStore!");
         SoundManager.instance.PlayButtonSound();
