@@ -246,8 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04081b41132a4b79b7e9bf9779ab44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsUI: {fileID: 0}
+  charactersUI: {fileID: 0}
   storeUI: {fileID: 0}
+  settingsUI: {fileID: 0}
 --- !u!114 &96152983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,8 +1933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04081b41132a4b79b7e9bf9779ab44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsUI: {fileID: 0}
+  charactersUI: {fileID: 0}
   storeUI: {fileID: 0}
+  settingsUI: {fileID: 0}
 --- !u!1001 &828986440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2383,8 +2385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04081b41132a4b79b7e9bf9779ab44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsUI: {fileID: 0}
+  charactersUI: {fileID: 0}
   storeUI: {fileID: 0}
+  settingsUI: {fileID: 0}
 --- !u!1 &969724167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,8 +2439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04081b41132a4b79b7e9bf9779ab44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsUI: {fileID: 0}
+  charactersUI: {fileID: 0}
   storeUI: {fileID: 0}
+  settingsUI: {fileID: 0}
 --- !u!114 &969724170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2669,7 +2673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b1f1c4fdb814b6f999aa9af1aeefe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 8300000, guid: 0b248a69d95ac844cb6dbff08dd9762c, type: 3}
+  jumpClip: {fileID: 8300000, guid: b85c96882fe60e049b917aa4b996c2ae, type: 3}
   deathClip: {fileID: 8300000, guid: ad725dcd9806ce94ca28997a3f393a3e, type: 3}
   readySprite: {fileID: 21300000, guid: 9e5619a5fedbe403f8e0513cb35c7fd3, type: 3}
   standSprite: {fileID: 21300000, guid: bf12911bbdd39442688982e741aea990, type: 3}
