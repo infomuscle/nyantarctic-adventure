@@ -86,9 +86,14 @@ public class GameManager : MonoBehaviour {
     }
 
     private void MoveFish() {
-        ResetFish();
-        // fish = GameObject.Find("Fish(Clone)");
-        // fish.GetComponent<Fish>().isMove = true;
+        // ResetFish();
+        fish = GameObject.Find("Fish(Clone)");
+        if (fish) {
+            fish.GetComponent<Fish>().isMove = true;
+        }
+        else {
+            ResetFish();
+        }
     }
 
     public void ResetFish() {
@@ -98,6 +103,7 @@ public class GameManager : MonoBehaviour {
         }
 
         fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2 + 10;
+        // GameObject newFish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));
         fish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));
     }
 
