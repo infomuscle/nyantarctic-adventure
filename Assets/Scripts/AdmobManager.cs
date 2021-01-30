@@ -23,26 +23,6 @@ public class AdmobManager : MonoBehaviour {
 
     void Start() {
         MobileAds.Initialize(initStatus => { });
-
-        RequestBanner();
-    }
-
-    private void RequestBanner() {
-        #if UNITY_ANDROID
-        adUnitId = "ca-app-pub-3940256099942544/6300978111";
-        #elif UNITY_IPHONE
-        adUnitId = "ca-app-pub-3940256099942544/2934735716";
-        #else
-        adUnitId = "unexpected_platform";
-        #endif
-
-        bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-
-        // Load the banner with the request.
-        bannerView.LoadAd(request);
     }
 
     public void RequestReward() {
