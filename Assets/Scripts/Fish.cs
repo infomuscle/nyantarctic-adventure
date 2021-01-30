@@ -6,6 +6,7 @@ public class Fish : MonoBehaviour, IItem {
     private const int JUMP_FORCE = 50000;
 
     public static Fish instance;
+    public bool isMove = false;
 
     private Rigidbody2D rigidbody;
 
@@ -43,6 +44,16 @@ public class Fish : MonoBehaviour, IItem {
             rigidbody.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
             transform.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
         }
+
+        // if (isMove) {
+        //     transform.Translate(Vector2.left * (1000f * Time.deltaTime));
+        //     // transform.Translate(Vector2.left * (SPEED * Time.deltaTime));
+        //     if (CheckOutOfScreen()) {
+        //         Destroy(this);
+        //         isMove = false;
+        //         GameManager.instance.ResetFish();
+        //     }
+        // }
     }
 
     public void Use() {
@@ -60,5 +71,13 @@ public class Fish : MonoBehaviour, IItem {
             GameManager.instance.GetFish();
             Destroy(gameObject);
         }
+    }
+
+    private bool CheckOutOfScreen() {
+        if (transform.position.x <= -188f) {
+            return true;
+        }
+
+        return false;
     }
 }

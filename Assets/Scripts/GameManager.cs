@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour {
 
     private void MoveFish() {
         ResetFish();
+        // fish = GameObject.Find("Fish(Clone)");
+        // fish.GetComponent<Fish>().isMove = true;
     }
 
     public void ResetFish() {
