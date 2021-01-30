@@ -107,7 +107,7 @@ public class Iceberg : MonoBehaviour {
         transform.position = new Vector2(posX, DEFAULT_POS_Y);
 
         ChangeTag();
-        GameManager.instance.ResetFish();
+        // GameManager.instance.ResetFish();
     }
 
     private bool CheckPositionOfScreen(string position) {

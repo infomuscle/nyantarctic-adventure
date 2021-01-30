@@ -68,13 +68,8 @@ public class GameManager : MonoBehaviour {
         if (score > step) {
             MoveBacgkrounds();
             MoveIceberg();
+            MoveFish();
             step++;
-        }
-    }
-
-    private void MoveIceberg() {
-        for (int i = 0; i < icebergs.Length; i++) {
-            icebergs[i].isMove = true;
         }
     }
 
@@ -84,11 +79,21 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void MoveIceberg() {
+        for (int i = 0; i < icebergs.Length; i++) {
+            icebergs[i].isMove = true;
+        }
+    }
+
+    private void MoveFish() {
+        ResetFish();
+    }
+
     public void ResetFish() {
-        // fish = GameObject.Find("Fish(Clone)");
-        // if (fish) {
-            // Destroy(fish);
-        // }
+        fish = GameObject.Find("Fish(Clone)");
+        if (fish) {
+            Destroy(fish);
+        }
 
         fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2 + 10;
         fish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));
