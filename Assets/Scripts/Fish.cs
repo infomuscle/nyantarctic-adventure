@@ -46,17 +46,19 @@ public class Fish : MonoBehaviour, IItem {
         }
 
         if (isMove) {
-            transform.Translate(Vector2.left * (1000f * Time.deltaTime));
-            // transform.Translate(Vector2.left * (SPEED * Time.deltaTime));
-            if (CheckOutOfScreen()) {
-                GameManager.instance.ResetFish();
-                // Destroy(this);
-                // isMove = false;
-            }
+            Move();
         }
     }
 
     public void Use() {
+    }
+
+    private void Move() {
+        rigidbody.velocity = Vector2.zero;
+        transform.Translate(Vector2.left * (1000f * Time.deltaTime));
+        if (CheckOutOfScreen()) {
+            GameManager.instance.ResetFish();
+        }
     }
 
     IEnumerator Jump(float time) {
