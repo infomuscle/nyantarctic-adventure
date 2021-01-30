@@ -54,6 +54,7 @@ public class Fish : MonoBehaviour, IItem {
     }
 
     private void Move() {
+        rigidbody.isKinematic = true;
         rigidbody.velocity = Vector2.zero;
         transform.Translate(Vector2.left * (1000f * Time.deltaTime));
         if (CheckOutOfScreen()) {
@@ -69,7 +70,7 @@ public class Fish : MonoBehaviour, IItem {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.tag == "Player" && !isMove) {
             GameManager.instance.GetFish();
             Destroy(gameObject);
         }
