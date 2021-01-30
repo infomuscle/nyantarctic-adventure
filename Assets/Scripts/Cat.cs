@@ -192,26 +192,34 @@ public class Cat : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        jumpForce = 0;
-        isLanding = true;
-        projector.projectile.SetActive(false);
-    }
-
-    private void OnCollisionStay2D(Collision2D other) {
-        if (isJumping && isLanding) {
-            ChangeSprite("Slide");
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "TargetIceberg") {
+            jumpForce = 0;
+            isLanding = true;
         }
 
-        if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
-            ChangeParent();
+        if (collision.gameObject.tag == "StandIceberg") {
+            projector.projectile.SetActive(false);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.tag == "TargetIceberg") {
+            if (isJumping && isLanding) {
+                ChangeSprite("Slide");
+            }
+
+            // if (other.collider.tag == "TargetIceberg" && rigidbody.velocity == Vector2.zero && isLanding) {
+            if (rigidbody.velocity == Vector2.zero && isLanding) {
+                ChangeParent();
 
 
-            target = other.gameObject.GetComponent<Iceberg>();
+                target = collision.gameObject.GetComponent<Iceberg>();
 
-            stopPosX = stopPosXs[target.centers.Length];
-            isRepositioning = true;
-            isLanding = false;
+                stopPosX = stopPosXs[target.centers.Length];
+                isRepositioning = true;
+                isLanding = false;
+            }
         }
     }
 

@@ -45,15 +45,15 @@ public class Fish : MonoBehaviour, IItem {
             transform.position = new Vector3(transform.position.x, DEFAULT_POS_Y);
         }
 
-        // if (isMove) {
-            // transform.Translate(Vector2.left * (1000f * Time.deltaTime));
+        if (isMove) {
+            transform.Translate(Vector2.left * (1000f * Time.deltaTime));
             // transform.Translate(Vector2.left * (SPEED * Time.deltaTime));
-            // if (CheckOutOfScreen()) {
-                // GameManager.instance.ResetFish();
+            if (CheckOutOfScreen()) {
+                GameManager.instance.ResetFish();
                 // Destroy(this);
                 // isMove = false;
-            // }
-        // }
+            }
+        }
     }
 
     public void Use() {

@@ -86,14 +86,14 @@ public class GameManager : MonoBehaviour {
     }
 
     private void MoveFish() {
-        ResetFish();
-        // fish = GameObject.Find("Fish(Clone)");
-        // if (fish) {
-            // fish.GetComponent<Fish>().isMove = true;
-        // }
-        // else {
-            // ResetFish();
-        // }
+        // ResetFish();
+        fish = GameObject.Find("Fish(Clone)");
+        if (fish) {
+            fish.GetComponent<Fish>().isMove = true;
+        }
+        else {
+            ResetFish();
+        }
     }
 
     public void ResetFish() {
