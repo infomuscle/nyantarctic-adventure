@@ -85,10 +85,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ResetFish() {
-        fish = GameObject.Find("Fish(Clone)");
-        if (fish) {
-            Destroy(fish);
-        }
+        // fish = GameObject.Find("Fish(Clone)");
+        // if (fish) {
+            // Destroy(fish);
+        // }
 
         fishPosX = (icebergs[0].transform.position.x + icebergs[1].transform.position.x) / 2 + 10;
         fish = Instantiate(fishPrefab, new Vector3(fishPosX, -350f, 0), Quaternion.Euler(0, 0, -70));

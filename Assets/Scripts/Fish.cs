@@ -5,6 +5,8 @@ public class Fish : MonoBehaviour, IItem {
     private const float DEFAULT_POS_Y = -350f;
     private const int JUMP_FORCE = 50000;
 
+    public static Fish instance;
+
     private Rigidbody2D rigidbody;
 
 
@@ -12,6 +14,16 @@ public class Fish : MonoBehaviour, IItem {
     private bool appear;
     private float posX;
     private float delay;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+        else {
+            Debug.LogWarning("Multple Fish on Scene");
+            Destroy(gameObject);
+        }
+    }
 
     public void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
